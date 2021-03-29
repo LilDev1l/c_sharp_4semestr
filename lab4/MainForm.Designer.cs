@@ -66,7 +66,7 @@ namespace S2_Lab02
             this.AirSearchButton = new System.Windows.Forms.Button();
             this.MenuStrip = new System.Windows.Forms.MenuStrip();
             this.MenuItemSearch = new System.Windows.Forms.ToolStripMenuItem();
-            this.сортировкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuItemGeneration = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItemAboutProgram = new System.Windows.Forms.ToolStripMenuItem();
             this.StatusStrip = new System.Windows.Forms.StatusStrip();
             this.StatusItemObjectsAmountLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -139,7 +139,8 @@ namespace S2_Lab02
             "Albatros",
             "Boeing",
             "Turbay",
-            "Vought"});
+            "Vought",
+            "Ан-26"});
             this.AirModelList.Location = new System.Drawing.Point(6, 96);
             this.AirModelList.Name = "AirModelList";
             this.AirModelList.Size = new System.Drawing.Size(180, 24);
@@ -510,13 +511,14 @@ namespace S2_Lab02
             this.MenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.MenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MenuItemSearch,
-            this.сортировкаToolStripMenuItem,
+            this.MenuItemGeneration,
             this.MenuItemAboutProgram});
             this.MenuStrip.Location = new System.Drawing.Point(0, 0);
             this.MenuStrip.Name = "MenuStrip";
             this.MenuStrip.Size = new System.Drawing.Size(1026, 28);
             this.MenuStrip.TabIndex = 31;
             this.MenuStrip.Text = "menuStrip1";
+            this.MenuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.MenuStrip_ItemClicked);
             // 
             // MenuItemSearch
             // 
@@ -525,10 +527,12 @@ namespace S2_Lab02
             this.MenuItemSearch.Text = "Поиск/Сортировка";
             this.MenuItemSearch.Click += new System.EventHandler(this.AirSearchButton_Click);
             // 
-            // сортировкаToolStripMenuItem
+            // MenuItemGeneration
             // 
-            this.сортировкаToolStripMenuItem.Name = "сортировкаToolStripMenuItem";
-            this.сортировкаToolStripMenuItem.Size = new System.Drawing.Size(14, 24);
+            this.MenuItemGeneration.Name = "MenuItemGeneration";
+            this.MenuItemGeneration.Size = new System.Drawing.Size(98, 24);
+            this.MenuItemGeneration.Text = "Генерация";
+            this.MenuItemGeneration.Click += new System.EventHandler(this.MenuItemGeneration_Click);
             // 
             // MenuItemAboutProgram
             // 
@@ -691,7 +695,7 @@ namespace S2_Lab02
 
         #endregion
 
-        private System.Windows.Forms.ToolStripMenuItem сортировкаToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem MenuItemGeneration;
     }
 }
 

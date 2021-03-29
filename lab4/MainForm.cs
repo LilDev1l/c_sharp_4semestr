@@ -79,7 +79,7 @@ namespace S2_Lab02
 
             StatusItemObjectsSetAmountLabel.Text = Planes.Count.ToString();
         }
-        private void GenerateNewDataView()
+        public void GenerateNewDataView()
         {
             DataView.Nodes["Airport"].Nodes.Clear();
             foreach (var plane in Planes)
@@ -126,7 +126,7 @@ namespace S2_Lab02
             else if (AirTypePassenger.Checked)
                 plane.Type = AirTypePassenger.Text;
             else if (AirTypeMilitary.Checked)
-                plane.Type = AirTypePassenger.Text;
+                plane.Type = AirTypeMilitary.Text;
 
             if (!Validate(plane)) 
                 return;
@@ -254,6 +254,18 @@ namespace S2_Lab02
         private void AirYearReleaseDatePicker_ValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void MenuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void MenuItemGeneration_Click(object sender, EventArgs e)
+        {
+            var generationForm = new Thread(() => Application.Run(new GenerationForm(this)));
+            generationForm.Start();
+            Enabled = false;
         }
     }
 }
