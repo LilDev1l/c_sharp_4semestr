@@ -1,6 +1,4 @@
-﻿using S2_Lab02.Crew;
-using S2_Lab02.Planes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
@@ -20,25 +18,7 @@ namespace S2_Lab02
         public DateTime DateRelease { get; set; }
         public int LoadCapacity { get; set; }
         public int PassengersSeatsAmount { get; set; }
-        public List<CrewMember> Crew { get; }
-
-        public Plane()
-        {
-            Crew = new List<CrewMember>();
-        }
-
-       public Plane(PlaneFactory factory, CrewBuilder crewBuilder, int id)
-        {
-            Id = id;
-            Crew = new Academy().ReturnCrew(crewBuilder);
-            Type = factory.CreateType();
-            Model = factory.CreateModel();
-        }
-        
-        public Plane(List<CrewMember> listCrew)
-        {
-            Crew = listCrew;
-        }
+        public List<CrewMember> Crew { get; set; }
 
         public override string ToString()
         {

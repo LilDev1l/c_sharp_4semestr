@@ -66,15 +66,14 @@ namespace S2_Lab02
             this.AirSearchButton = new System.Windows.Forms.Button();
             this.MenuStrip = new System.Windows.Forms.MenuStrip();
             this.MenuItemSearch = new System.Windows.Forms.ToolStripMenuItem();
-            this.MenuItemGeneration = new System.Windows.Forms.ToolStripMenuItem();
-            this.параметрыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ResetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.сортировкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItemAboutProgram = new System.Windows.Forms.ToolStripMenuItem();
             this.StatusStrip = new System.Windows.Forms.StatusStrip();
             this.StatusItemObjectsAmountLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.StatusItemObjectsSetAmountLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.StatusItemTimeLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.StatusItemTimeSetLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.VIPcheckBox = new System.Windows.Forms.CheckBox();
             this.AirTypeGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AirLoadCapacitySetter)).BeginInit();
             this.AirAddGroup.SuspendLayout();
@@ -90,7 +89,6 @@ namespace S2_Lab02
             // AirYearReleaseDatePicker
             // 
             this.AirYearReleaseDatePicker.Location = new System.Drawing.Point(6, 257);
-            this.AirYearReleaseDatePicker.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.AirYearReleaseDatePicker.Name = "AirYearReleaseDatePicker";
             this.AirYearReleaseDatePicker.Size = new System.Drawing.Size(213, 22);
             this.AirYearReleaseDatePicker.TabIndex = 2;
@@ -99,16 +97,14 @@ namespace S2_Lab02
             // AirYearReleaseLabel
             // 
             this.AirYearReleaseLabel.Location = new System.Drawing.Point(6, 235);
-            this.AirYearReleaseLabel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.AirYearReleaseLabel.Name = "AirYearReleaseLabel";
-            this.AirYearReleaseLabel.Size = new System.Drawing.Size(101, 19);
+            this.AirYearReleaseLabel.Size = new System.Drawing.Size(100, 19);
             this.AirYearReleaseLabel.TabIndex = 3;
             this.AirYearReleaseLabel.Text = "Год выпуска";
             // 
             // AirTypeCargo
             // 
             this.AirTypeCargo.Location = new System.Drawing.Point(6, 19);
-            this.AirTypeCargo.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.AirTypeCargo.Name = "AirTypeCargo";
             this.AirTypeCargo.Size = new System.Drawing.Size(104, 24);
             this.AirTypeCargo.TabIndex = 5;
@@ -119,18 +115,17 @@ namespace S2_Lab02
             // AirTypePassenger
             // 
             this.AirTypePassenger.Location = new System.Drawing.Point(6, 49);
-            this.AirTypePassenger.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.AirTypePassenger.Name = "AirTypePassenger";
             this.AirTypePassenger.Size = new System.Drawing.Size(207, 24);
             this.AirTypePassenger.TabIndex = 6;
             this.AirTypePassenger.TabStop = true;
             this.AirTypePassenger.Text = "Пассажирский";
             this.AirTypePassenger.UseVisualStyleBackColor = true;
+            this.AirTypePassenger.CheckedChanged += new System.EventHandler(this.AirTypePassenger_CheckedChanged);
             // 
             // AirTypeMilitary
             // 
             this.AirTypeMilitary.Location = new System.Drawing.Point(6, 79);
-            this.AirTypeMilitary.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.AirTypeMilitary.Name = "AirTypeMilitary";
             this.AirTypeMilitary.Size = new System.Drawing.Size(104, 24);
             this.AirTypeMilitary.TabIndex = 7;
@@ -146,10 +141,8 @@ namespace S2_Lab02
             "Albatros",
             "Boeing",
             "Turbay",
-            "Vought",
-            "Ан-26"});
+            "Vought"});
             this.AirModelList.Location = new System.Drawing.Point(6, 96);
-            this.AirModelList.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.AirModelList.Name = "AirModelList";
             this.AirModelList.Size = new System.Drawing.Size(180, 24);
             this.AirModelList.TabIndex = 8;
@@ -157,22 +150,20 @@ namespace S2_Lab02
             // AirModelLabel
             // 
             this.AirModelLabel.Location = new System.Drawing.Point(6, 75);
-            this.AirModelLabel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.AirModelLabel.Name = "AirModelLabel";
-            this.AirModelLabel.Size = new System.Drawing.Size(165, 14);
+            this.AirModelLabel.Size = new System.Drawing.Size(164, 14);
             this.AirModelLabel.TabIndex = 9;
             this.AirModelLabel.Text = "Модель самолёта";
             // 
             // AirTypeGroup
             // 
+            this.AirTypeGroup.Controls.Add(this.VIPcheckBox);
             this.AirTypeGroup.Controls.Add(this.AirTypeCargo);
             this.AirTypeGroup.Controls.Add(this.AirTypePassenger);
             this.AirTypeGroup.Controls.Add(this.AirTypeMilitary);
             this.AirTypeGroup.Location = new System.Drawing.Point(6, 126);
-            this.AirTypeGroup.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.AirTypeGroup.Name = "AirTypeGroup";
-            this.AirTypeGroup.Padding = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.AirTypeGroup.Size = new System.Drawing.Size(283, 106);
+            this.AirTypeGroup.Size = new System.Drawing.Size(285, 106);
             this.AirTypeGroup.TabIndex = 10;
             this.AirTypeGroup.TabStop = false;
             this.AirTypeGroup.Text = "Тип самолёта";
@@ -185,7 +176,6 @@ namespace S2_Lab02
             0,
             0});
             this.AirLoadCapacitySetter.Location = new System.Drawing.Point(6, 304);
-            this.AirLoadCapacitySetter.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.AirLoadCapacitySetter.Maximum = new decimal(new int[] {
             500,
             0,
@@ -208,7 +198,6 @@ namespace S2_Lab02
             // AirLoadCapacityLabel
             // 
             this.AirLoadCapacityLabel.Location = new System.Drawing.Point(6, 282);
-            this.AirLoadCapacityLabel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.AirLoadCapacityLabel.Name = "AirLoadCapacityLabel";
             this.AirLoadCapacityLabel.Size = new System.Drawing.Size(213, 19);
             this.AirLoadCapacityLabel.TabIndex = 12;
@@ -228,11 +217,9 @@ namespace S2_Lab02
             this.AirAddGroup.Controls.Add(this.AirModelLabel);
             this.AirAddGroup.Controls.Add(this.AirLoadCapacitySetter);
             this.AirAddGroup.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.AirAddGroup.Location = new System.Drawing.Point(11, 31);
-            this.AirAddGroup.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.AirAddGroup.Location = new System.Drawing.Point(12, 31);
             this.AirAddGroup.Name = "AirAddGroup";
-            this.AirAddGroup.Padding = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.AirAddGroup.Size = new System.Drawing.Size(283, 420);
+            this.AirAddGroup.Size = new System.Drawing.Size(285, 420);
             this.AirAddGroup.TabIndex = 15;
             this.AirAddGroup.TabStop = false;
             this.AirAddGroup.Text = "Данные самолета";
@@ -240,7 +227,6 @@ namespace S2_Lab02
             // AirIdInput
             // 
             this.AirIdInput.Location = new System.Drawing.Point(6, 50);
-            this.AirIdInput.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.AirIdInput.Name = "AirIdInput";
             this.AirIdInput.Size = new System.Drawing.Size(180, 22);
             this.AirIdInput.TabIndex = 26;
@@ -249,7 +235,6 @@ namespace S2_Lab02
             // 
             this.AirIdLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.AirIdLabel.Location = new System.Drawing.Point(6, 28);
-            this.AirIdLabel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.AirIdLabel.Name = "AirIdLabel";
             this.AirIdLabel.Size = new System.Drawing.Size(255, 28);
             this.AirIdLabel.TabIndex = 21;
@@ -258,7 +243,6 @@ namespace S2_Lab02
             // AirPassengersSeatsLabel
             // 
             this.AirPassengersSeatsLabel.Location = new System.Drawing.Point(6, 336);
-            this.AirPassengersSeatsLabel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.AirPassengersSeatsLabel.Name = "AirPassengersSeatsLabel";
             this.AirPassengersSeatsLabel.Size = new System.Drawing.Size(261, 19);
             this.AirPassengersSeatsLabel.TabIndex = 17;
@@ -267,7 +251,6 @@ namespace S2_Lab02
             // AirPassengersSeatsSetter
             // 
             this.AirPassengersSeatsSetter.Location = new System.Drawing.Point(6, 356);
-            this.AirPassengersSeatsSetter.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.AirPassengersSeatsSetter.Maximum = new decimal(new int[] {
             300,
             0,
@@ -302,10 +285,8 @@ namespace S2_Lab02
             this.CrewAddGroup.Controls.Add(this.CrewMemberNameInput);
             this.CrewAddGroup.Controls.Add(this.CrewMemberIdLabel);
             this.CrewAddGroup.Location = new System.Drawing.Point(730, 35);
-            this.CrewAddGroup.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.CrewAddGroup.Name = "CrewAddGroup";
-            this.CrewAddGroup.Padding = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.CrewAddGroup.Size = new System.Drawing.Size(283, 416);
+            this.CrewAddGroup.Size = new System.Drawing.Size(285, 416);
             this.CrewAddGroup.TabIndex = 16;
             this.CrewAddGroup.TabStop = false;
             this.CrewAddGroup.Text = "Добавление экипажа";
@@ -320,7 +301,6 @@ namespace S2_Lab02
             "Второй пилот",
             "Инженер"});
             this.CrewMemberPositionList.Location = new System.Drawing.Point(9, 195);
-            this.CrewMemberPositionList.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.CrewMemberPositionList.Name = "CrewMemberPositionList";
             this.CrewMemberPositionList.Size = new System.Drawing.Size(180, 24);
             this.CrewMemberPositionList.TabIndex = 18;
@@ -328,7 +308,6 @@ namespace S2_Lab02
             // CrewMemberWorkExperienceLabel
             // 
             this.CrewMemberWorkExperienceLabel.Location = new System.Drawing.Point(8, 122);
-            this.CrewMemberWorkExperienceLabel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.CrewMemberWorkExperienceLabel.Name = "CrewMemberWorkExperienceLabel";
             this.CrewMemberWorkExperienceLabel.Size = new System.Drawing.Size(261, 19);
             this.CrewMemberWorkExperienceLabel.TabIndex = 25;
@@ -337,16 +316,14 @@ namespace S2_Lab02
             // CrewMemberPositionLabel
             // 
             this.CrewMemberPositionLabel.Location = new System.Drawing.Point(8, 169);
-            this.CrewMemberPositionLabel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.CrewMemberPositionLabel.Name = "CrewMemberPositionLabel";
-            this.CrewMemberPositionLabel.Size = new System.Drawing.Size(165, 23);
+            this.CrewMemberPositionLabel.Size = new System.Drawing.Size(164, 23);
             this.CrewMemberPositionLabel.TabIndex = 19;
             this.CrewMemberPositionLabel.Text = "Должность";
             // 
             // CrewMemberWorkExperienceSetter
             // 
             this.CrewMemberWorkExperienceSetter.Location = new System.Drawing.Point(9, 144);
-            this.CrewMemberWorkExperienceSetter.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.CrewMemberWorkExperienceSetter.Maximum = new decimal(new int[] {
             25,
             0,
@@ -369,7 +346,6 @@ namespace S2_Lab02
             // CrewMemberAgeLabel
             // 
             this.CrewMemberAgeLabel.Location = new System.Drawing.Point(8, 73);
-            this.CrewMemberAgeLabel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.CrewMemberAgeLabel.Name = "CrewMemberAgeLabel";
             this.CrewMemberAgeLabel.Size = new System.Drawing.Size(261, 19);
             this.CrewMemberAgeLabel.TabIndex = 19;
@@ -378,8 +354,7 @@ namespace S2_Lab02
             // CrewDeleteButton
             // 
             this.CrewDeleteButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.CrewDeleteButton.Location = new System.Drawing.Point(149, 327);
-            this.CrewDeleteButton.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.CrewDeleteButton.Location = new System.Drawing.Point(148, 327);
             this.CrewDeleteButton.Name = "CrewDeleteButton";
             this.CrewDeleteButton.Size = new System.Drawing.Size(121, 59);
             this.CrewDeleteButton.TabIndex = 24;
@@ -391,7 +366,6 @@ namespace S2_Lab02
             // 
             this.CrewMemberDeleteButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.CrewMemberDeleteButton.Location = new System.Drawing.Point(11, 327);
-            this.CrewMemberDeleteButton.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.CrewMemberDeleteButton.Name = "CrewMemberDeleteButton";
             this.CrewMemberDeleteButton.Size = new System.Drawing.Size(121, 59);
             this.CrewMemberDeleteButton.TabIndex = 25;
@@ -402,7 +376,6 @@ namespace S2_Lab02
             // CrewMemberAgeSetter
             // 
             this.CrewMemberAgeSetter.Location = new System.Drawing.Point(9, 95);
-            this.CrewMemberAgeSetter.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.CrewMemberAgeSetter.Maximum = new decimal(new int[] {
             45,
             0,
@@ -426,11 +399,10 @@ namespace S2_Lab02
             // 
             this.CrewMemberAddButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.CrewMemberAddButton.Location = new System.Drawing.Point(9, 232);
-            this.CrewMemberAddButton.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.CrewMemberAddButton.MaximumSize = new System.Drawing.Size(261, 73);
-            this.CrewMemberAddButton.MinimumSize = new System.Drawing.Size(261, 73);
+            this.CrewMemberAddButton.MaximumSize = new System.Drawing.Size(260, 73);
+            this.CrewMemberAddButton.MinimumSize = new System.Drawing.Size(260, 73);
             this.CrewMemberAddButton.Name = "CrewMemberAddButton";
-            this.CrewMemberAddButton.Size = new System.Drawing.Size(261, 73);
+            this.CrewMemberAddButton.Size = new System.Drawing.Size(260, 73);
             this.CrewMemberAddButton.TabIndex = 17;
             this.CrewMemberAddButton.Text = "Добавить члена экипажа";
             this.CrewMemberAddButton.UseVisualStyleBackColor = true;
@@ -439,16 +411,14 @@ namespace S2_Lab02
             // CrewMemberNameLabel
             // 
             this.CrewMemberNameLabel.Location = new System.Drawing.Point(8, 24);
-            this.CrewMemberNameLabel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.CrewMemberNameLabel.Name = "CrewMemberNameLabel";
-            this.CrewMemberNameLabel.Size = new System.Drawing.Size(165, 14);
+            this.CrewMemberNameLabel.Size = new System.Drawing.Size(164, 14);
             this.CrewMemberNameLabel.TabIndex = 18;
             this.CrewMemberNameLabel.Text = "Имя";
             // 
             // CrewMemberNameInput
             // 
             this.CrewMemberNameInput.Location = new System.Drawing.Point(9, 46);
-            this.CrewMemberNameInput.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.CrewMemberNameInput.Name = "CrewMemberNameInput";
             this.CrewMemberNameInput.Size = new System.Drawing.Size(180, 22);
             this.CrewMemberNameInput.TabIndex = 19;
@@ -457,7 +427,6 @@ namespace S2_Lab02
             // 
             this.CrewMemberIdLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.CrewMemberIdLabel.Location = new System.Drawing.Point(89, 308);
-            this.CrewMemberIdLabel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.CrewMemberIdLabel.Name = "CrewMemberIdLabel";
             this.CrewMemberIdLabel.Size = new System.Drawing.Size(113, 19);
             this.CrewMemberIdLabel.TabIndex = 18;
@@ -467,9 +436,8 @@ namespace S2_Lab02
             // 
             this.DataReadButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.DataReadButton.Location = new System.Drawing.Point(136, 21);
-            this.DataReadButton.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.DataReadButton.Name = "DataReadButton";
-            this.DataReadButton.Size = new System.Drawing.Size(123, 69);
+            this.DataReadButton.Size = new System.Drawing.Size(124, 69);
             this.DataReadButton.TabIndex = 18;
             this.DataReadButton.Text = "Считать данные";
             this.DataReadButton.UseVisualStyleBackColor = true;
@@ -479,9 +447,8 @@ namespace S2_Lab02
             // 
             this.DataSaveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.DataSaveButton.Location = new System.Drawing.Point(6, 21);
-            this.DataSaveButton.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.DataSaveButton.Name = "DataSaveButton";
-            this.DataSaveButton.Size = new System.Drawing.Size(123, 69);
+            this.DataSaveButton.Size = new System.Drawing.Size(124, 69);
             this.DataSaveButton.TabIndex = 19;
             this.DataSaveButton.Text = "Сохранить данные";
             this.DataSaveButton.UseVisualStyleBackColor = true;
@@ -493,9 +460,7 @@ namespace S2_Lab02
             this.DataGroup.Controls.Add(this.DataReadButton);
             this.DataGroup.Controls.Add(this.DataSaveButton);
             this.DataGroup.Location = new System.Drawing.Point(309, 457);
-            this.DataGroup.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.DataGroup.Name = "DataGroup";
-            this.DataGroup.Padding = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.DataGroup.Size = new System.Drawing.Size(409, 101);
             this.DataGroup.TabIndex = 21;
             this.DataGroup.TabStop = false;
@@ -506,7 +471,6 @@ namespace S2_Lab02
             // 
             this.DataViewClearButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.DataViewClearButton.Location = new System.Drawing.Point(290, 21);
-            this.DataViewClearButton.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.DataViewClearButton.Name = "DataViewClearButton";
             this.DataViewClearButton.Size = new System.Drawing.Size(113, 69);
             this.DataViewClearButton.TabIndex = 30;
@@ -517,10 +481,9 @@ namespace S2_Lab02
             // AirAddButton
             // 
             this.AirAddButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.AirAddButton.Location = new System.Drawing.Point(11, 464);
-            this.AirAddButton.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.AirAddButton.Location = new System.Drawing.Point(12, 464);
             this.AirAddButton.Name = "AirAddButton";
-            this.AirAddButton.Size = new System.Drawing.Size(283, 96);
+            this.AirAddButton.Size = new System.Drawing.Size(285, 96);
             this.AirAddButton.TabIndex = 23;
             this.AirAddButton.Text = "Добавить Самолет";
             this.AirAddButton.UseVisualStyleBackColor = true;
@@ -529,7 +492,6 @@ namespace S2_Lab02
             // DataView
             // 
             this.DataView.Location = new System.Drawing.Point(309, 35);
-            this.DataView.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.DataView.Name = "DataView";
             this.DataView.Size = new System.Drawing.Size(409, 416);
             this.DataView.TabIndex = 28;
@@ -539,9 +501,8 @@ namespace S2_Lab02
             // 
             this.AirSearchButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.AirSearchButton.Location = new System.Drawing.Point(730, 464);
-            this.AirSearchButton.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.AirSearchButton.Name = "AirSearchButton";
-            this.AirSearchButton.Size = new System.Drawing.Size(283, 94);
+            this.AirSearchButton.Size = new System.Drawing.Size(285, 94);
             this.AirSearchButton.TabIndex = 29;
             this.AirSearchButton.Text = "Поиск/Сортировка";
             this.AirSearchButton.UseVisualStyleBackColor = true;
@@ -552,49 +513,30 @@ namespace S2_Lab02
             this.MenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.MenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MenuItemSearch,
-            this.MenuItemGeneration,
-            this.параметрыToolStripMenuItem,
+            this.сортировкаToolStripMenuItem,
             this.MenuItemAboutProgram});
             this.MenuStrip.Location = new System.Drawing.Point(0, 0);
             this.MenuStrip.Name = "MenuStrip";
-            this.MenuStrip.Size = new System.Drawing.Size(1026, 30);
+            this.MenuStrip.Size = new System.Drawing.Size(1026, 28);
             this.MenuStrip.TabIndex = 31;
             this.MenuStrip.Text = "menuStrip1";
-            this.MenuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.MenuStrip_ItemClicked);
             // 
             // MenuItemSearch
             // 
             this.MenuItemSearch.Name = "MenuItemSearch";
-            this.MenuItemSearch.Size = new System.Drawing.Size(155, 26);
+            this.MenuItemSearch.Size = new System.Drawing.Size(155, 24);
             this.MenuItemSearch.Text = "Поиск/Сортировка";
             this.MenuItemSearch.Click += new System.EventHandler(this.AirSearchButton_Click);
             // 
-            // MenuItemGeneration
+            // сортировкаToolStripMenuItem
             // 
-            this.MenuItemGeneration.Name = "MenuItemGeneration";
-            this.MenuItemGeneration.Size = new System.Drawing.Size(98, 26);
-            this.MenuItemGeneration.Text = "Генерация";
-            this.MenuItemGeneration.Click += new System.EventHandler(this.MenuItemGeneration_Click);
-            // 
-            // параметрыToolStripMenuItem
-            // 
-            this.параметрыToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ResetToolStripMenuItem});
-            this.параметрыToolStripMenuItem.Name = "параметрыToolStripMenuItem";
-            this.параметрыToolStripMenuItem.Size = new System.Drawing.Size(104, 26);
-            this.параметрыToolStripMenuItem.Text = "Параметры";
-            // 
-            // ResetToolStripMenuItem
-            // 
-            this.ResetToolStripMenuItem.Name = "ResetToolStripMenuItem";
-            this.ResetToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.ResetToolStripMenuItem.Text = "Сброс";
-            this.ResetToolStripMenuItem.Click += new System.EventHandler(this.ResetToolStripMenuItem_Click);
+            this.сортировкаToolStripMenuItem.Name = "сортировкаToolStripMenuItem";
+            this.сортировкаToolStripMenuItem.Size = new System.Drawing.Size(14, 24);
             // 
             // MenuItemAboutProgram
             // 
             this.MenuItemAboutProgram.Name = "MenuItemAboutProgram";
-            this.MenuItemAboutProgram.Size = new System.Drawing.Size(118, 26);
+            this.MenuItemAboutProgram.Size = new System.Drawing.Size(118, 24);
             this.MenuItemAboutProgram.Text = "О программе";
             this.MenuItemAboutProgram.Click += new System.EventHandler(this.MenuItemAboutProgram_Click);
             // 
@@ -639,6 +581,17 @@ namespace S2_Lab02
             this.StatusItemTimeSetLabel.Size = new System.Drawing.Size(13, 24);
             this.StatusItemTimeSetLabel.Text = " ";
             // 
+            // VIPcheckBox
+            // 
+            this.VIPcheckBox.AutoSize = true;
+            this.VIPcheckBox.Enabled = false;
+            this.VIPcheckBox.Location = new System.Drawing.Point(157, 52);
+            this.VIPcheckBox.Name = "VIPcheckBox";
+            this.VIPcheckBox.Size = new System.Drawing.Size(51, 21);
+            this.VIPcheckBox.TabIndex = 27;
+            this.VIPcheckBox.Text = "VIP";
+            this.VIPcheckBox.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -652,15 +605,14 @@ namespace S2_Lab02
             this.Controls.Add(this.CrewAddGroup);
             this.Controls.Add(this.AirAddGroup);
             this.Controls.Add(this.MenuStrip);
-            this.ForeColor = System.Drawing.Color.Turquoise;
             this.MainMenuStrip = this.MenuStrip;
-            this.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.MaximumSize = new System.Drawing.Size(1044, 647);
             this.MinimumSize = new System.Drawing.Size(1044, 647);
             this.Name = "MainForm";
             this.Text = "Form Input";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.AirTypeGroup.ResumeLayout(false);
+            this.AirTypeGroup.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AirLoadCapacitySetter)).EndInit();
             this.AirAddGroup.ResumeLayout(false);
             this.AirAddGroup.PerformLayout();
@@ -683,7 +635,7 @@ namespace S2_Lab02
 
         private System.Windows.Forms.ToolStripStatusLabel StatusItemTimeLabel;
 
-        private System.Windows.Forms.ToolStripStatusLabel StatusItemObjectsSetAmountLabel;
+        public System.Windows.Forms.ToolStripStatusLabel StatusItemObjectsSetAmountLabel;
 
         private System.Windows.Forms.ToolStripStatusLabel StatusItemObjectsAmountLabel;
 
@@ -699,7 +651,7 @@ namespace S2_Lab02
 
         private System.Windows.Forms.Button AirSearchButton;
 
-        private System.Windows.Forms.TreeView DataView;
+        public System.Windows.Forms.TreeView DataView;
 
         private System.Windows.Forms.Button AirAddButton;
         private System.Windows.Forms.Button CrewDeleteButton;
@@ -754,9 +706,8 @@ namespace S2_Lab02
 
         #endregion
 
-        private System.Windows.Forms.ToolStripMenuItem MenuItemGeneration;
-        private System.Windows.Forms.ToolStripMenuItem параметрыToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ResetToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem сортировкаToolStripMenuItem;
+        private System.Windows.Forms.CheckBox VIPcheckBox;
     }
 }
 

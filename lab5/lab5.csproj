@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6346958D-09A8-44FE-9F28-12A9676D8BEC}</ProjectGuid>
+    <ProjectGuid>{01A4AC76-6D08-4486-8889-C1125CE6B8ED}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>S2_Lab02</RootNamespace>
     <AssemblyName>S2_Lab02</AssemblyName>
@@ -57,35 +57,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Crew\Academy.cs" />
-    <Compile Include="Crew\CargoCrewBuilder.cs" />
-    <Compile Include="Crew\CrewBuilder.cs" />
-    <Compile Include="Crew\CrewMember.cs" />
-    <Compile Include="Crew\IPrototypeCrew.cs" />
-    <Compile Include="Crew\PassengerCrewBuilder.cs" />
-    <Compile Include="Crew\WarCrewBuilder.cs" />
-    <Compile Include="GenerationForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GenerationForm.Designer.cs">
-      <DependentUpon>GenerationForm.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Commands\ClearOnCommand.cs" />
+    <Compile Include="Commands\ICommand.cs" />
+    <Compile Include="Commands\MultiPult.cs" />
+    <Compile Include="Commands\ReadOnCommand.cs" />
+    <Compile Include="Commands\SaveOnCommand.cs" />
+    <Compile Include="CrewMember.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\AirbusModel.cs" />
-    <Compile Include="Models\An26Model.cs" />
-    <Compile Include="Models\MD-11Model.cs" />
-    <Compile Include="Models\Model.cs" />
-    <Compile Include="Planes\CargoFactory.cs" />
-    <Compile Include="Planes\PassengerFactory.cs" />
     <Compile Include="Planes\Plane.cs" />
     <Compile Include="PlaneIdCheckAttribute.cs" />
-    <Compile Include="Planes\PlaneFactory.cs" />
-    <Compile Include="Planes\WarFactory.cs" />
+    <Compile Include="Planes\PlaneDecorator.cs" />
+    <Compile Include="Planes\VipPlane.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SearchForm.cs">
@@ -94,14 +81,6 @@
     <Compile Include="SearchForm.Designer.cs">
       <DependentUpon>SearchForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="SettingsDefault.cs" />
-    <Compile Include="Types\CargoType.cs" />
-    <Compile Include="Types\PassengerType.cs" />
-    <Compile Include="Types\Type.cs" />
-    <Compile Include="Types\WarType.cs" />
-    <EmbeddedResource Include="GenerationForm.resx">
-      <DependentUpon>GenerationForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -131,6 +110,5 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
