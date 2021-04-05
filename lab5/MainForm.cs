@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 using Newtonsoft.Json;
+using S2_Lab02.Commands;
+using S2_Lab02.Planes;
 using Timer = System.Threading.Timer;
 
 namespace S2_Lab02
@@ -14,9 +15,11 @@ namespace S2_Lab02
     public partial class MainForm : Form
     {
         public List<Plane> Planes { get; set; }
-        private List<CrewMember> _crew;
-        private List<int> _planesIdList;
+        public List<CrewMember> _crew;
+        public List<int> _planesIdList;
         private Timer _timer;
+
+        private MultiPult multiPult;
 
         public MainForm()
         {
@@ -28,6 +31,11 @@ namespace S2_Lab02
             AirYearReleaseDatePicker.Format = DateTimePickerFormat.Custom;
             AirYearReleaseDatePicker.CustomFormat = "dd.MM.yyyy";
             _timer = new Timer(Time, null, 0, 1000);
+
+            multiPult = new MultiPult();
+            multiPult.SetCommand("Save", new SaveOnCommand(this));
+            multiPult.SetCommand("Read", new ReadOnCommand(this));
+            multiPult.SetCommand("Clear", new ClearOnCommand(this));
         }
 
         private void Time(object obj)
@@ -113,8 +121,9 @@ namespace S2_Lab02
 
         private void AirAddButton_Click(object sender, EventArgs e)
         {
-            var plane = new Plane(_crew)
+            var plane = new Plane()
             {
+                Crew = _crew,
                 Model = AirModelList.Text,
                 DateRelease = AirYearReleaseDatePicker.Value,
                 LoadCapacity = Convert.ToInt32(AirLoadCapacitySetter.Text),
@@ -125,9 +134,13 @@ namespace S2_Lab02
             if (AirTypeCargo.Checked)
                 plane.Type = AirTypeCargo.Text;
             else if (AirTypePassenger.Checked)
+            {
                 plane.Type = AirTypePassenger.Text;
+                if (VIPcheckBox.Checked)
+                    plane = new VipPlane(plane).plane;
+            }
             else if (AirTypeMilitary.Checked)
-                plane.Type = AirTypeMilitary.Text;
+                plane.Type = AirTypePassenger.Text;
 
             if (!Validate(plane)) 
                 return;
@@ -172,42 +185,17 @@ namespace S2_Lab02
 
         private void DataSaveButton_Click(object sender, EventArgs e)
         {
-            try
-            {
-                var json = JsonConvert.SerializeObject(Planes);
-                using var streamWriter = new StreamWriter(@"data/planes.json");
-                streamWriter.Write(json);
-                MessageBox.Show("Данные успешно сохранены.");
-            }
-            catch (Exception exception)
-            {
-                MessageBox.Show(exception.Message);
-            }
+            multiPult.PressButton("Save");
         }
 
         private void DataReadButton_Click(object sender, EventArgs e)
         {
-            try
-            {
-                using var streamReader = new StreamReader(@"data/planes.json");
-                var json = streamReader.ReadToEnd();
-                Planes = JsonConvert.DeserializeObject<List<Plane>>(json);
-                MessageBox.Show("Данные успешно считаны.");
-                GenerateNewDataView();
-            }
-            catch (Exception exception)
-            {
-                MessageBox.Show(exception.Message);
-            }
+            multiPult.PressButton("Read");
         }
 
         private void DataViewClearButton_Click(object sender, EventArgs e)
         {
-            Planes.Clear();
-            _crew.Clear();
-            _planesIdList.Clear();
-            DataView.Nodes["Airport"].Nodes.Clear();
-            StatusItemObjectsSetAmountLabel.Text = "0";
+            multiPult.PressButton("Clear");
         }
 
         private void AirSearchButton_Click(object sender, EventArgs e)
@@ -257,22 +245,9 @@ namespace S2_Lab02
 
         }
 
-        private void MenuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        private void AirTypePassenger_CheckedChanged(object sender, EventArgs e)
         {
-
-        }
-
-        private void MenuItemGeneration_Click(object sender, EventArgs e)
-        {
-            GenerationForm generationForm = new GenerationForm(this);
-            generationForm.Show();
-            Enabled = false;
-        }
-
-        private void ResetToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Font = SettingsDefault.getInstance().Font;
-            this.ForeColor = SettingsDefault.getInstance().Color;
+            VIPcheckBox.Enabled = true;
         }
     }
 }

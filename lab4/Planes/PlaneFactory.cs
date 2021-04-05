@@ -9,7 +9,7 @@ namespace S2_Lab02.Planes
 {
     public abstract class PlaneFactory
     {
-        public abstract String CreateModel();
-        public abstract String CreateType();
+        public abstract string CreateModel();
+        public abstract string CreateType();
     }
 }
