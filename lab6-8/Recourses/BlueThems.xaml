@@ -1,0 +1,49 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:GameStore.Recourses">
+
+    <Style x:Key="BackColor">
+        <Setter Property="Control.Background" Value="#212F39"></Setter>
+    </Style>
+
+    <Style x:Key="TitleLineColor">
+        <Setter Property="Control.Background" Value="#203A4F"></Setter>
+    </Style>
+
+    <Style x:Key="MainViewsColor">
+        <Setter Property="Control.Background" Value="#427E8E"></Setter>
+    </Style>
+
+    <Style x:Key="ButtonStyle">
+        <Setter Property="Control.Background" Value="#427E8E"></Setter>
+        <Setter Property="Control.HorizontalAlignment" Value="Left"></Setter>
+        <Setter Property="Control.BorderThickness" Value="0"></Setter>
+        <Setter Property="Control.Margin" Value="10 3"></Setter>
+        <Setter Property="Control.Height" Value="24"></Setter>
+    </Style>
+
+    <Style x:Key="AddButtonTemplate" TargetType="Button">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate  TargetType="Button">
+                    <Grid>
+                        <Ellipse Fill="#427E8E"></Ellipse>
+                        <Label Content="{TemplateBinding Content}" HorizontalAlignment="Center"
+                               VerticalAlignment="Center"></Label>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="True" />
+                    <Condition Property="IsPressed" Value="True" />
+                </MultiTrigger.Conditions>
+                <Setter Property="Opacity" Value="0.5"/>
+            </MultiTrigger>
+        </Style.Triggers>
+    </Style>
+
+</ResourceDictionary>
