@@ -286,7 +286,6 @@ namespace ProgramStore
             AllButton.Style = (Style)this.TryFindResource("ButtonStyle");
             UtilityButton.Style = (Style)this.TryFindResource("ButtonStyle");
             EditorButton.Style = (Style)this.TryFindResource("ButtonStyle");
-            EditorButton.Style= (Style)this.TryFindResource("ButtonStyle");
             DefenderButton.Style = (Style)this.TryFindResource("ButtonStyle");
             WebButton.Style = (Style)this.TryFindResource("ButtonStyle");
             LanguegeButton.Style = (Style)this.TryFindResource("TitleLineColor");
@@ -316,7 +315,6 @@ namespace ProgramStore
 
             AllButton.Style = (Style)this.TryFindResource("ButtonStyle");
             UtilityButton.Style = (Style)this.TryFindResource("ButtonStyle");
-            EditorButton.Style = (Style)this.TryFindResource("ButtonStyle");
             EditorButton.Style = (Style)this.TryFindResource("ButtonStyle");
             DefenderButton.Style = (Style)this.TryFindResource("ButtonStyle");
             WebButton.Style = (Style)this.TryFindResource("ButtonStyle");

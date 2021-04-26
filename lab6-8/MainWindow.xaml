@@ -232,7 +232,8 @@
                     </Grid>
                 </Button>
                 <Button x:Name="EditorButton"
-                        Style="{StaticResource ButtonStyle}">
+                        Style="{StaticResource ButtonStyle}"
+                        Command="localcommand:HomeCommands.CategorySort">
                     <Button.CommandBindings>
                         <CommandBinding Command="localcommand:HomeCommands.CategorySort"
                                         Executed="CategorySort_Editor_Executed">
@@ -241,20 +242,17 @@
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="20"></ColumnDefinition>
-                            <ColumnDefinition Width="80"></ColumnDefinition>
+                            <ColumnDefinition Width="80"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="32"></RowDefinition>
                         </Grid.RowDefinitions>
                         <TextBlock x:Name="Editor"
-                                   Grid.Row="0" Grid.Column="1"
-                                   Height="24" FontSize="14"
+                                   Grid.Row="0" Grid.Column="1" FontSize="14"
                                    Text="Editor"
-                                   VerticalAlignment="Top"
                                    HorizontalAlignment="Left"
                                    Foreground="#535050"
-                                   Margin="5 3">
-                        </TextBlock>
+                                   Margin="5 3" Grid.ColumnSpan="2"/>
                         <Image 
                             VerticalAlignment="Top"
                             HorizontalAlignment="Center"
