@@ -263,7 +263,7 @@ namespace ProgramStore
         
         public void UpdateProgram_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            DataUpdate dataUpdate = new DataUpdate();
+            DataUpdate dataUpdate = new DataUpdate(mainWindow);
             DataUpdateFieldInit(dataUpdate);
             ProgramDataService.RemoveProgram(program);
             dataUpdate.Show();

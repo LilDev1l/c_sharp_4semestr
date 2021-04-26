@@ -21,11 +21,12 @@ namespace ProgramStore
     /// </summary>
     public partial class DataUpdate : Window
     {
-
+        MainWindow main;
         public string Path { get; set; } = "";
 
-        public DataUpdate()
+        public DataUpdate(MainWindow main)
         {
+            this.main = main;
             InitializeComponent();
             FieldsInit();
         }
@@ -89,7 +90,16 @@ namespace ProgramStore
         }
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            if (IsValid())
+            {
+                ProgramDataService.AddProgram(CreateProgram());
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Please write all fields ...");
+            }
+            main.DisplayPrograms();
         }
         private void Enter_Click(object sender, RoutedEventArgs e)
         {
@@ -102,6 +112,7 @@ namespace ProgramStore
             {
                 MessageBox.Show("Please write all fields ...");
             }
+            main.DisplayPrograms();
         }
         private Program CreateProgram()
         {

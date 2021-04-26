@@ -1,5 +1,4 @@
 ﻿<Window x:Class="ProgramStore.MainWindow"   
-        Cursor="D:\ВАЖНОЕ\4 семестр\ООП\c_sharp_4semestr\lab6-8\images\Hand.ani"
         Icon="images\logo.png"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"

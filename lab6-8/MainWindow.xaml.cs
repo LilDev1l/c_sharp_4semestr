@@ -208,7 +208,7 @@ namespace ProgramStore
         }
         private void AddProgram_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            DataUpdate dataUpdate = new DataUpdate();
+            DataUpdate dataUpdate = new DataUpdate(this);
             dataUpdate.Owner = this;
             dataUpdate.Show();
         }
