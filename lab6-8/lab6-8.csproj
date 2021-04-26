@@ -175,8 +175,6 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Data\data.json" />
-    <Content Include="fonts\fontawesome-webfont.woff" />
-    <Content Include="fonts\fontawesome-webfont.woff2" />
     <None Include="images\AppStarting.ani" />
     <None Include="images\Arrow.ani" />
     <None Include="images\Handwriting.ani" />
@@ -225,13 +223,10 @@
     <Resource Include="images\shield-warrior-protector.png" />
     <Resource Include="images\Wildfire.png" />
     <Resource Include="images\witherjpg.jpg" />
-    <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
-    <Content Include="fonts\fontawesome-webfont.svg" />
     <Resource Include="images\redo.png" />
     <Resource Include="images\undo.png" />
     <Content Include="Content\font-awesome.css" />
-    <Content Include="Content\font-awesome.min.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
