@@ -1,10 +1,12 @@
 ﻿<Window x:Class="ProgramStore.MainWindow"   
+        Cursor="D:\ВАЖНОЕ\4 семестр\ООП\c_sharp_4semestr\lab6-8\images\Hand.ani"
         Icon="images\logo.jpg"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProgramStore"
+        xmlns:fa="http://schemas.fontawesome.com/icons/"
         xmlns:localcommand ="clr-namespace:ProgramStore.Commands"
         mc:Ignorable="d"
         Title="Home" Height="450" Width="800" MinHeight="500" MinWidth="820">
@@ -38,7 +40,7 @@
           Style="{StaticResource BackColor}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="4*"></ColumnDefinition>
+            <ColumnDefinition Width="3*"></ColumnDefinition>
             <ColumnDefinition Width="220"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -48,12 +50,13 @@
 
 
         <Grid x:Name="LogoPlace" Grid.Row="0" Grid.Column="0"  
-              Style="{StaticResource TitleLineColor}" HorizontalAlignment="Right" Margin="0,0,0.4,425.4" Grid.RowSpan="2" Width="118">
+              Style="{StaticResource TitleLineColor}" Margin="0,0,0,425.4" Grid.RowSpan="2"
+              HorizontalAlignment="Center">
             <StackPanel Orientation="Horizontal"
                 Grid.Row="0" Grid.Column="0">
                 <Button x:Name="LanguegeButton"
-                Width="20"
-                Height="20"
+                Width="25"
+                Height="25"
                 Margin="2 0"
                 BorderThickness="0"
                Style="{StaticResource TitleLineColor}"  
@@ -66,9 +69,9 @@
                 </Button>
 
                 <Button x:Name="ThemeButton"
-                Width="20"
-                Height="20"
-                Margin="2 0"
+                Width="25"
+                Height="25"
+                Margin="2 0 15 0"
                 BorderThickness="0"
               Style="{StaticResource TitleLineColor}"
                 Click="ThemeButton_Click">
@@ -78,9 +81,6 @@
                            Text="BL">
                     </TextBlock>
                 </Button>
-
-                <local:DevelopButton Margin="3 2" Width="20" Height="20">
-                </local:DevelopButton>
 
                 <Button Width="20" Height="20" x:Name="Undo"
                         Click="Undo_Click">
