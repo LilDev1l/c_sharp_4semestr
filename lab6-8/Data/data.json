@@ -6,35 +6,3 @@
   "Price": 100,
   "Description": "Air Cluster — программа, предназначенная для объединения всех ваших облачных сервисов в одно большое облако. Поддерживается работа с несколькими аккаунтами на одном сервисе, а также создание неограниченного количества кластеров. Можно синхронизировать файлы и папки между аккаунтами и компьютером, а также создавать задачи синхронизации и использовать шифрование. А если потеряли какой-нибудь файл, то доступен централизованный поиск и история операций."
 }
-{
-  "Name": "Nioh 2",
-  "SmallName": "N2",
-  "Developer": "KOEI TECMO GAMES CO., LTD",
-  "Image": "/ProgramStore;component/images/Nioh2.jpg",
-  "Category": 0,
-  "Rating": 72,
-  "Price": 54,
-  "Description": "We remind you that the first part of the program project made it possible to fight with dangerous enemies and go through the whole path of war in the person of one warrior. He had to deal with simple swordsmen, demons and even spirits. Along the way, he was gaining strength, fighting the masters and preparing for the final battle. And if you enjoyed the first part of the adventure and can\u0027t wait to start playing the sequel",
-  "SystemRequirements": {
-    "OS": "Windows 8.1 / 10 (64-bit)",
-    "Processor": " Intel Core i5 4460",
-    "RAM": 6,
-    "FreeMemory": 70
-  }
-}
-{
-  "Name": "Dark Souls",
-  "SmallName": "DS",
-  "Developer": "FromSoftware",
-  "Image": "/ProgramStore;component/images/DS.jpg",
-  "Category": 0,
-  "Rating": 12,
-  "Price": 23,
-  "Description": "This program features a lot of well-known features, such as: the world of dark fantasy, crawling through mysterious caves, and terrible battles with opponents. The user will plunge into a new mystical story with deadly traps, dark mobs, powerful demons and terrible dragon bosses. You have to learn from death in order to survive. But thanks to the spirits of the other players you see, you will be given the chance to learn the lessons you need from their deaths.",
-  "SystemRequirements": {
-    "OS": "Windows XP ",
-    "Processor": " Core 2 Duo E6850 3.0 GHz / Phenom II X2 545 3.0 GHz",
-    "RAM": 2,
-    "FreeMemory": 4
-  }
-}
