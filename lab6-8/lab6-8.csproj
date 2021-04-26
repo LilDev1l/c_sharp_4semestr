@@ -175,14 +175,8 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Data\data.json" />
-    <None Include="images\AppStarting.ani" />
-    <None Include="images\Arrow.ani" />
-    <None Include="images\Handwriting.ani" />
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
-    <None Include="images\AppStarting.ani" />
-    <None Include="images\Arrow.ani" />
-    <None Include="images\Handwriting.ani" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -196,23 +190,7 @@
   <ItemGroup>
     <Resource Include="images\plus.png" />
     <Resource Include="images\groupIcon.png" />
-    <Resource Include="images\cyberpank.jpg" />
-    <Resource Include="images\allGame.png" />
     <Resource Include="images\findIcon.png" />
-    <Resource Include="images\logo.jpg" />
-    <Resource Include="images\logo.png" />
-    <Resource Include="images\AS3.jpg" />
-    <Resource Include="images\COD4.jpg" />
-    <Resource Include="images\DS.jpg" />
-    <Resource Include="images\Dungreed.jpg" />
-    <Resource Include="images\Fortnite.jpg" />
-    <Resource Include="images\gl.jpg" />
-    <Resource Include="images\LIRE.jpg" />
-    <Resource Include="images\Metro.jpg" />
-    <Resource Include="images\MK11.jpg" />
-    <Resource Include="images\NFS.jpg" />
-    <Resource Include="images\Nioh2.jpg" />
-    <Resource Include="images\ride.png" />
     <Resource Include="images\back.png" />
     <Resource Include="images\cancel.png" />
     <Resource Include="images\next.png" />
@@ -221,13 +199,12 @@
     <Resource Include="images\earth-globe.png" />
     <Resource Include="images\editor-pencil.png" />
     <Resource Include="images\shield-warrior-protector.png" />
-    <Resource Include="images\Wildfire.png" />
-    <Resource Include="images\witherjpg.jpg" />
     <Content Include="Content\font-awesome.min.css" />
-    <Resource Include="images\redo.png" />
-    <Resource Include="images\undo.png" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
+    <Resource Include="images\eye.png" />
+    <Resource Include="images\browser.png" />
+    <Resource Include="images\logo.png" />
     <Content Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />

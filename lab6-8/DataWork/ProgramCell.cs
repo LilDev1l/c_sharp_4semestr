@@ -232,7 +232,7 @@ namespace ProgramStore
         private void ProgramViewFieldInicalization(ProgramView programView)
         {
             programView.Owner = mainWindow;
-            programView.DescriptionText.Text = "Description:\n" + program.Description;
+            programView.DescriptionText.Text = program.Description;
             programView.ProgramName.Text = program.Name;
             programView.Price.Text = program.Price.ToString();
             BitmapImage bi3 = new BitmapImage();
