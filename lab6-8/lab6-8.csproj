@@ -38,9 +38,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MaterialDesign, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MaterialDesign.dll.1.0.0\lib\MaterialDesign.dll</HintPath>
-    </Reference>
     <Reference Include="MaterialDesignColors, Version=2.0.0.2422, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignColors.2.0.0\lib\net452\MaterialDesignColors.dll</HintPath>
     </Reference>
@@ -97,23 +94,23 @@
     </ApplicationDefinition>
     <Compile Include="Commands\ProgramCommand.cs" />
     <Compile Include="Commands\HomeCommands.cs" />
-    <Compile Include="DataUpdate.xaml.cs">
+    <Compile Include="Views\DataUpdate.xaml.cs">
       <DependentUpon>DataUpdate.xaml</DependentUpon>
     </Compile>
     <Compile Include="DataWork\ProgramDataService.cs" />
     <Compile Include="DevelopButton.xaml.cs">
       <DependentUpon>DevelopButton.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ProgramCell.cs" />
-    <Compile Include="ProgramView.xaml.cs">
+    <Compile Include="DataWork\ProgramCell.cs" />
+    <Compile Include="Views\ProgramView.xaml.cs">
       <DependentUpon>ProgramView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Category.cs" />
-    <Compile Include="Languege.cs" />
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Languege.cs" />
     <Compile Include="State.cs" />
-    <Compile Include="ThemeType.cs" />
-    <Compile Include="UndoRedoStack.cs" />
-    <Page Include="DataUpdate.xaml">
+    <Compile Include="Models\ThemeType.cs" />
+    <Compile Include="Commands\UndoRedoStack.cs" />
+    <Page Include="Views\DataUpdate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -129,11 +126,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ProgramView.xaml">
+    <Page Include="Views\ProgramView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainWindow.xaml">
+    <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -141,8 +138,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Program.cs" />
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="Models\Program.cs" />
+    <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
@@ -178,9 +175,11 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Data\data.json" />
-    <Content Include="fonts\FontAwesome.otf" />
-    <Content Include="fonts\fontawesome-webfont.ttf" />
-    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <None Include="images\AppStarting.ani" />
+    <None Include="images\Arrow.ani" />
+    <None Include="images\Handwriting.ani" />
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <None Include="images\AppStarting.ani" />
@@ -216,14 +215,19 @@
     <Resource Include="images\NFS.jpg" />
     <Resource Include="images\Nioh2.jpg" />
     <Resource Include="images\ride.png" />
-    <Resource Include="images\Skyrim.jpg" />
-    <Resource Include="images\TEKKEN.jpg" />
-    <Resource Include="images\WarThunder.jpg" />
+    <Resource Include="images\back.png" />
+    <Resource Include="images\cancel.png" />
+    <Resource Include="images\next.png" />
+    <Resource Include="images\repeat.png" />
+    <Resource Include="images\windows.png" />
+    <Resource Include="images\earth-globe.png" />
+    <Resource Include="images\editor-pencil.png" />
+    <Resource Include="images\shield-warrior-protector.png" />
     <Resource Include="images\Wildfire.png" />
     <Resource Include="images\witherjpg.jpg" />
-    <Resource Include="images\eye.png" />
-    <Resource Include="images\delete.png" />
-    <Resource Include="images\update.png" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Resource Include="images\redo.png" />
     <Resource Include="images\undo.png" />
     <Content Include="Content\font-awesome.css" />

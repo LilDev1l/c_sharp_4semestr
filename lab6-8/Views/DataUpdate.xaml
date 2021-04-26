@@ -71,7 +71,7 @@
         <ComboBox  x:Name="Category"
                    Grid.Row="1" Grid.Column="1"
                    FontSize="14"
-                   Height="20"
+                   Height="25"
                    Margin="10 5">
             <TextBlock>utility</TextBlock>
             <TextBlock>defender</TextBlock>
@@ -82,7 +82,7 @@
             Grid.Column="1" Grid.Row="2"
             FontSize="12"
             Height="22"
-            Margin="10 5"
+            Margin="10 0"
             Click="Image_Click"
             >Image</Button>
         <TextBox x:Name="Price"

@@ -29,7 +29,7 @@
         </Style>
         <Style x:Key="dataTriger" TargetType="TextBox">
             <Style.Triggers>
-                <DataTrigger Binding="{Binding ElementName=ByPoplarityButton, Path=IsChecked}"
+                <DataTrigger Binding="{Binding ElementName=ByName, Path=IsChecked}"
                         Value="True">
                     <Setter Property="IsEnabled" Value="False"/>
                 </DataTrigger>
@@ -85,14 +85,14 @@
                 <Button Width="20" Height="20" x:Name="Undo"
                         Click="Undo_Click">
                     <Image 
-                        Source="images\undo.png">
+                        Source="images\back.png">
                     </Image>
                 </Button>
 
                 <Button Width="20" Height="20" x:Name="Redo"
                         Click="Redo_Click">
                     <Image 
-                        Source="images\redo.png">
+                        Source="images\next.png">
                     </Image>
                 </Button>
             </StackPanel>
@@ -100,11 +100,12 @@
 
         <Grid x:Name="Title" Grid.Row="0" Grid.Column="1"
               Style="{StaticResource TitleLineColor}">
-            <TextBlock Text="MAMKIN-BOEZ.SHOP"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Center"
-                       FontSize="32"
-                       Foreground="White">
+            <TextBlock x:Name="TableTitleText"
+                Text="Store of useful programs for PC"
+                FontSize=" 18"
+                Foreground="White"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
             </TextBlock>
         </Grid>
 
@@ -162,7 +163,7 @@
                         <Image 
                             VerticalAlignment="Top"
                             HorizontalAlignment="Center"
-                            Source="images\allGame.png"
+                            Source="images\windows.png"
                             ></Image>
                     </Grid>
                 </Button>
@@ -226,7 +227,7 @@
                         <Image 
                             VerticalAlignment="Top"
                             HorizontalAlignment="Center"
-                            Source="images\allGame.png"
+                            Source="images\shield-warrior-protector.png"
                             ></Image>
                     </Grid>
                 </Button>
@@ -257,7 +258,7 @@
                         <Image 
                             VerticalAlignment="Top"
                             HorizontalAlignment="Center"
-                            Source="images\allGame.png"
+                            Source="images\editor-pencil.png"
                             ></Image>
                     </Grid>
                 </Button>
@@ -286,11 +287,10 @@
                                    Foreground="#535050"
                                    Margin="5 3">
                         </TextBlock>
-                        <Image 
-                            VerticalAlignment="Top"
+                        <Image
                             HorizontalAlignment="Center"
-                            Source="images\allGame.png"
-                            ></Image>
+                            Source="images\earth-globe.png" Margin="0,0,0,12"
+                            />
                     </Grid>
                 </Button>
             </StackPanel>
@@ -304,7 +304,7 @@
             <Button x:Name="AddGameButton"
                     Width="50" Height="50" 
                     VerticalAlignment="Bottom"
-                    HorizontalAlignment="Left"
+                    HorizontalAlignment="Center"
                     Margin="10,0,0,4.6"
                     Style="{StaticResource AddButtonTemplate}"
                     Command="localcommand:ProgramCommand.Add" Grid.ColumnSpan="2">
@@ -325,21 +325,10 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="25"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <Grid x:Name="TableTitle" Grid.Row="0" Grid.Column="0" 
-                  Style="{StaticResource TitleLineColor}">
-                <TextBlock x:Name="TableTitleText"
-                Text="Welcome to program shop for children and their parent"
-                FontSize=" 16"
-                Foreground="White"
-                HorizontalAlignment="Center">
-                </TextBlock>
-            </Grid>
-
-            <ScrollViewer x:Name="DataSection" Grid.Row="1"
+            <ScrollViewer x:Name="DataSection" Grid.Row="0"
                          >
                 <StackPanel x:Name="DataSectionStack">
                 </StackPanel>
@@ -412,11 +401,6 @@
                         </Image>
                     </Grid>
                 </Button>
-            </Grid>
-
-            <Grid x:Name="PosterPlace" Grid.Row="1">
-                <Image Source="images\cyberpank.jpg"
-                       HorizontalAlignment="Stretch" VerticalAlignment="Bottom"></Image>
             </Grid>
         </Grid>
 

@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace ProgramStore
 {
-    enum ThemeType
+    public enum Category
     {
-        BLUE,
-        RED,
-        GRAY
+        UTILITY,
+        DEFENDER,
+        EDITOR,
+        WEB,
+        ALL
     }
 }

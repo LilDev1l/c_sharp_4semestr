@@ -15,7 +15,6 @@ namespace ProgramStore.DataWork
     {
 
         public static string FILE_PATH = @"..\..\Data\data.json";
-        public static string RU_FILE_PATH = @"..\..\Data\dataRU.json";
         public static JsonSerializerOptions JSON_OPTIONS = new JsonSerializerOptions
         {
             Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),
@@ -59,15 +58,11 @@ namespace ProgramStore.DataWork
                 using (StreamReader jsonFile = new StreamReader(GetPath()))
                 {
                     string bufForJsonString = "";
-                    int semicolonCount = 0;
                     while (!jsonFile.EndOfStream)
                     {
                         bufForJsonString += jsonFile.ReadLine();
                         if (bufForJsonString.Length > 0 && bufForJsonString.Last() == '}')
-                            semicolonCount++;
-                        if (semicolonCount == 2)
                         {
-                            semicolonCount = 0;
                             Program program = JsonSerializer.Deserialize<Program>(bufForJsonString, JSON_OPTIONS);
                             bufForJsonString = "";
                             programs.Add(program);
@@ -155,9 +150,7 @@ namespace ProgramStore.DataWork
         private static string GetPath()
         {
             State langState = State.GetState();
-            if (langState.Languege == Languege.EN)
-                return FILE_PATH;
-            else return RU_FILE_PATH;
+            return FILE_PATH;
         }
         
     }

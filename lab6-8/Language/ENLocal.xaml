@@ -25,7 +25,7 @@
     <sys:String x:Key="DataUpdateEnterButton">Enter</sys:String>
     <sys:String x:Key="DataUpdateImageButton">Image</sys:String>
 
-    <sys:String x:Key="GameViewName">Name:</sys:String>
+    <sys:String x:Key="GameViewName">Name: </sys:String>
     <sys:String x:Key="GameViewImage">Image: </sys:String>
     <sys:String x:Key="GameViewCategory">Category:</sys:String>
     <sys:String x:Key="GameViewPrice">Price: </sys:String>

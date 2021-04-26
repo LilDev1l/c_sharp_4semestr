@@ -81,7 +81,6 @@ namespace ProgramStore
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Image files (*.png;*.jpg)|*.png;*.jpg|All files (*.*)|*.*";
-            openFileDialog.InitialDirectory = new Uri("/ProgramStory;component/Images", UriKind.Relative).AbsoluteUri;
 
             if (openFileDialog.ShowDialog() == true)
             {

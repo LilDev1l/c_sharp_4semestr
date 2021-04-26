@@ -24,14 +24,14 @@ namespace ProgramStore
     /// </summary>
     public partial class MainWindow : Window
     {
-        private List<Program> currentGames;
+        private List<Program> currentPrograms;
         private UndoRedoStack undoRedo;
 
         public MainWindow()
         {
             State state = State.GetState();
             InitializeComponent();
-            currentGames = new List<Program>();
+            currentPrograms = new List<Program>();
             state.Languege = Languege.EN;
             state.Theme = ThemeType.BLUE;
             undoRedo = new UndoRedoStack();
@@ -88,7 +88,7 @@ namespace ProgramStore
         {
             List<Program> programs = ProgramDataService.FindAll();
 
-            currentGames.Clear();
+            currentPrograms.Clear();
             DataSectionStack.Children.Clear();
 
             if (category != Category.ALL)
@@ -100,7 +100,7 @@ namespace ProgramStore
                         ProgramCell programCell = new ProgramCell(program, this);
                         Grid viewProgramCell = programCell.BuildCell();
                         DataSectionStack.Children.Add(viewProgramCell);
-                        currentGames.Add(program);
+                        currentPrograms.Add(program);
                     }
                 }
             }
@@ -112,7 +112,7 @@ namespace ProgramStore
                     Grid viewProgramCell = programCell.BuildCell();
                     DataSectionStack.Children.Add(viewProgramCell);
                 }
-                currentGames = programs;
+                currentPrograms = programs;
             }
         }
 
@@ -149,7 +149,7 @@ namespace ProgramStore
         }
         private void SortByName()
         {
-            currentGames.Sort((n, q) =>
+            currentPrograms.Sort((n, q) =>
             {
                 if (n.Name.First() > q.Name.First())
                     return 1;
@@ -160,7 +160,7 @@ namespace ProgramStore
         }
         private void SortByPrice()
         {
-            currentGames.Sort((n, q) =>
+            currentPrograms.Sort((n, q) =>
             {
                 if (n.Price > q.Price)
                     return 1;
@@ -172,7 +172,7 @@ namespace ProgramStore
         private void PrintCurrentPrograms()
         {
             DataSectionStack.Children.Clear();
-            foreach (var program in currentGames)
+            foreach (var program in currentPrograms)
             {
                 ProgramCell programCell = new ProgramCell(program, this);
                 Grid viewProgramCell = programCell.BuildCell();
@@ -185,20 +185,20 @@ namespace ProgramStore
             string findName = FindBar.Text;
 
             DataSectionStack.Children.Clear();
-            currentGames.Clear();
-            currentGames = ProgramDataService.FindByName(findName);
+            currentPrograms.Clear();
+            currentPrograms = ProgramDataService.FindByName(findName);
 
-            if (currentGames != null && currentGames.Count > 0)
+            if (currentPrograms != null && currentPrograms.Count > 0)
             {
                 PrintCurrentPrograms();
             }
 
             UndoRedoStack.Command command = new UndoRedoStack.Command(() => {
                 DataSectionStack.Children.Clear();
-                currentGames.Clear();
-                currentGames = ProgramDataService.FindByName(findName);
+                currentPrograms.Clear();
+                currentPrograms = ProgramDataService.FindByName(findName);
 
-                if (currentGames != null && currentGames.Count > 0)
+                if (currentPrograms != null && currentPrograms.Count > 0)
                 {
                     PrintCurrentPrograms();
                 }
@@ -280,7 +280,6 @@ namespace ProgramStore
             FindPlace.Style  = (Style)this.TryFindResource("TitleLineColor");
 
             FilterPlace.Style = (Style)this.TryFindResource("MainViewsColor");
-            TableTitle.Style = FindPlace.Style = (Style)this.TryFindResource("TitleLineColor"); ;
             DataPlace.Style = (Style)this.TryFindResource("MainViewsColor");
             MenuPlace.Style  = (Style)this.TryFindResource("MainViewsColor");
 
@@ -312,7 +311,6 @@ namespace ProgramStore
             FindPlace.Style = (Style)this.TryFindResource("TitleLineColor");
 
             FilterPlace.Style = (Style)this.TryFindResource("MainViewsColor");
-            TableTitle.Style = FindPlace.Style = (Style)this.TryFindResource("TitleLineColor"); ;
             DataPlace.Style = (Style)this.TryFindResource("MainViewsColor");
             MenuPlace.Style = (Style)this.TryFindResource("MainViewsColor");
 

@@ -76,11 +76,6 @@ namespace ProgramStore
                     vs.Add(155);
                     vs.Add(164);
                     break;
-                case ThemeType.RED://#FF4040
-                    vs.Add(255);
-                    vs.Add(64);
-                    vs.Add(64);
-                    break;
                 default:
                     break;
             }
@@ -105,7 +100,7 @@ namespace ProgramStore
             image.Margin = new Thickness(5);
             BitmapImage bi3 = new BitmapImage();
             bi3.BeginInit();
-            bi3.UriSource = new Uri(program.Image, UriKind.Relative) ;
+            bi3.UriSource = new Uri(program.Image, UriKind.Absolute) ;
             bi3.EndInit();
             image.Source = bi3;
             Grid.SetColumn(image, 0);
@@ -169,7 +164,7 @@ namespace ProgramStore
             Image image = new Image();
             BitmapImage bi3 = new BitmapImage();
             bi3.BeginInit();
-            bi3.UriSource = new Uri(@"/ProgramStore;component/images/delete.png", UriKind.Relative);
+            bi3.UriSource = new Uri(@"/ProgramStore;component/images/cancel.png", UriKind.Relative);
             bi3.EndInit();
             image.Source = bi3;
 
@@ -196,7 +191,7 @@ namespace ProgramStore
             Image image = new Image();
             BitmapImage bi3 = new BitmapImage();
             bi3.BeginInit();
-            bi3.UriSource = new Uri(@"/ProgramStore;component/images/update.png", UriKind.Relative);
+            bi3.UriSource = new Uri(@"/ProgramStore;component/images/repeat.png", UriKind.Relative);
             bi3.EndInit();
             image.Source = bi3;
 
@@ -222,8 +217,6 @@ namespace ProgramStore
                     return "#427E8E";
                 case ThemeType.GRAY:
                     return "#979BA4";
-                case ThemeType.RED:
-                    return "#FF4040";
                 default:
                     return null;
             }
@@ -240,12 +233,11 @@ namespace ProgramStore
         {
             programView.Owner = mainWindow;
             programView.DescriptionText.Text = "Description:\n" + program.Description;
-            //programView.ProgramName.Text = program.Name;
+            programView.ProgramName.Text = program.Name;
             programView.Price.Text = program.Price.ToString();
-            //programView.Category.Text += CategoryToString(program.Category);
             BitmapImage bi3 = new BitmapImage();
             bi3.BeginInit();
-            bi3.UriSource = new Uri(program.Image, UriKind.Relative);
+            bi3.UriSource = new Uri(program.Image, UriKind.Absolute);
             bi3.EndInit();
             programView.ProgramImage.Source = bi3;
         }
