@@ -13,181 +13,133 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using GameStore.DataWork;
-using GameStore.Commands;
+using ProgramStore.DataWork;
+using ProgramStore.Commands;
 using System.Windows.Resources;
 
-namespace GameStore
+namespace ProgramStore
 {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
-        private List<Game> currentGames;
+        private List<Program> currentGames;
         private UndoRedoStack undoRedo;
 
         public MainWindow()
         {
             State state = State.GetState();
             InitializeComponent();
-            currentGames = new List<Game>();
+            currentGames = new List<Program>();
             state.Languege = Languege.EN;
             state.Theme = ThemeType.BLUE;
             undoRedo = new UndoRedoStack();
-            DisplayGames();
+            DisplayPrograms();
         }
 
-        private void GenreSort_All_Executed(object sender, ExecutedRoutedEventArgs e)
+        private void CategorySort_All_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             UndoRedoStack.Command command = new UndoRedoStack.Command(()=> {
-                DisplayGames();
+                DisplayPrograms();
             });
             undoRedo.AddAction(command);
 
-            DisplayGames();
+            DisplayPrograms();
         }
-        private void GenreSort_Action_Executed(object sender, ExecutedRoutedEventArgs e)
+        private void CategorySort_Utility_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             UndoRedoStack.Command command = new UndoRedoStack.Command(() => {
-                DisplayGames(Genre.ACTION);
+                DisplayPrograms(Category.UTILITY);
             });
             undoRedo.AddAction(command);
             
-            DisplayGames(Genre.ACTION);
+            DisplayPrograms(Category.UTILITY);
         }
-        private void GenreSort_Shooter_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
+        private void CategorySort_Defender_Executed(object sender, ExecutedRoutedEventArgs e)
+        {   
             UndoRedoStack.Command command = new UndoRedoStack.Command(() => {
-                DisplayGames(Genre.SHOOTER);
+                DisplayPrograms(Category.DEFENDER);
             });
             undoRedo.AddAction(command);
             
-            DisplayGames(Genre.SHOOTER);
+            DisplayPrograms(Category.DEFENDER);
         }
-        private void GenreSort_Arcade_Executed(object sender, ExecutedRoutedEventArgs e)
+        private void CategorySort_Editor_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             UndoRedoStack.Command command = new UndoRedoStack.Command(() => {
-                DisplayGames(Genre.ARCADE);
+                DisplayPrograms(Category.EDITOR);
             });
             undoRedo.AddAction(command);
            
-            DisplayGames(Genre.ARCADE);
+            DisplayPrograms(Category.EDITOR);
         }
-        private void GenreSort_RPG_Executed(object sender, ExecutedRoutedEventArgs e)
+        private void CategorySort_Web_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             UndoRedoStack.Command command = new UndoRedoStack.Command(() => {
-                DisplayGames(Genre.RPG);
+                DisplayPrograms(Category.WEB);
             });
             undoRedo.AddAction(command);
             
-            DisplayGames(Genre.RPG);
-        }
-        private void GenreSort_Horror_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            UndoRedoStack.Command command = new UndoRedoStack.Command(() => {
-                DisplayGames(Genre.HORROR);
-            });
-            undoRedo.AddAction(command);
-           
-            DisplayGames(Genre.HORROR);
-        }
-        private void GenreSort_Fighting_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            UndoRedoStack.Command command = new UndoRedoStack.Command(() => {
-                DisplayGames(Genre.FIGHTING);
-            });
-            undoRedo.AddAction(command);
-           
-            DisplayGames(Genre.FIGHTING);
-        }
-        private void GenreSort_Simulator_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            UndoRedoStack.Command command = new UndoRedoStack.Command(() => {
-                DisplayGames(Genre.SIMULATOR);
-            });
-            undoRedo.AddAction(command);
-           
-            DisplayGames(Genre.SIMULATOR);
-        }
-        private void GenreSort_Race_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            UndoRedoStack.Command command = new UndoRedoStack.Command(() => {
-                DisplayGames(Genre.RACE);
-            });
-            undoRedo.AddAction(command);
-          
-            DisplayGames(Genre.RACE);
+            DisplayPrograms(Category.WEB);
         }
 
-        public void DisplayGames(Genre genre = Genre.ALL)
+        public void DisplayPrograms(Category category = Category.ALL)
         {
-            List<Game> games = GameDataService.FindAll();
+            List<Program> programs = ProgramDataService.FindAll();
 
             currentGames.Clear();
             DataSectionStack.Children.Clear();
 
-            if (genre != Genre.ALL)
+            if (category != Category.ALL)
             {
-                foreach (var game in games)
+                foreach (var program in programs)
                 {
-                    if (game.Genre == genre)
+                    if (program.Category == category)
                     {
-                        GameCell gameCell = new GameCell(game, this);
-                        Grid viewGameCell = gameCell.BuildCell();
-                        DataSectionStack.Children.Add(viewGameCell);
-                        currentGames.Add(game);
+                        ProgramCell programCell = new ProgramCell(program, this);
+                        Grid viewProgramCell = programCell.BuildCell();
+                        DataSectionStack.Children.Add(viewProgramCell);
+                        currentGames.Add(program);
                     }
                 }
             }
             else
             {
-                foreach (var game in games)
+                foreach (var program in programs)
                 {
-                    GameCell gameCell = new GameCell(game, this);
-                    Grid viewGameCell = gameCell.BuildCell();
-                    DataSectionStack.Children.Add(viewGameCell);
+                    ProgramCell programCell = new ProgramCell(program, this);
+                    Grid viewProgramCell = programCell.BuildCell();
+                    DataSectionStack.Children.Add(viewProgramCell);
                 }
-                currentGames = games;
+                currentGames = programs;
             }
         }
 
         private void Filters_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            if (ByPoplarityButton.IsChecked == true)
-            {
-                UndoRedoStack.Command command = new UndoRedoStack.Command(() => {
-                    SortByPopularity();
-                    PrintCurrentGames();
-                });
-                undoRedo.AddAction(command);
-                
-                SortByPopularity();
-                PrintCurrentGames();
-                ByPoplarityButton.IsChecked = false;
-            }
-            else if (ByNameButton.IsChecked == true)
+            if (ByNameButton.IsChecked == true)
             {
                 UndoRedoStack.Command command = new UndoRedoStack.Command(() => {
                     SortByName();
-                    PrintCurrentGames();
+                    PrintCurrentPrograms();
                 });
                 undoRedo.AddAction(command);
               
                 SortByName();
-                PrintCurrentGames();
+                PrintCurrentPrograms();
                 ByNameButton.IsChecked = false;
             }
             else if (ByPriceButton.IsChecked == true)
             {
                 UndoRedoStack.Command command = new UndoRedoStack.Command(() => {
                     SortByPrice();
-                    PrintCurrentGames();
+                    PrintCurrentPrograms();
                 });
                 undoRedo.AddAction(command);
               
                 SortByPrice();
-                PrintCurrentGames();
+                PrintCurrentPrograms();
                 ByPriceButton.IsChecked = false;
             }
             else 
@@ -195,25 +147,13 @@ namespace GameStore
                 MessageBox.Show("Please, choose type for filter...");
             }
         }
-
-        private void SortByPopularity()
-        {
-            currentGames.Sort((n,q)=> 
-            {
-                if (n.Rating < q.Rating)
-                    return 1;
-                else if (n.Rating > q.Rating)
-                    return -1;
-                else return 0;
-            });
-        }
         private void SortByName()
         {
             currentGames.Sort((n, q) =>
             {
-                if (n.FullName.First() > q.FullName.First())
+                if (n.Name.First() > q.Name.First())
                     return 1;
-                else if (n.FullName.First() < q.FullName.First())
+                else if (n.Name.First() < q.Name.First())
                     return -1;
                 else return 0;
             });
@@ -229,14 +169,14 @@ namespace GameStore
                 else return 0;
             });
         }
-        private void PrintCurrentGames()
+        private void PrintCurrentPrograms()
         {
             DataSectionStack.Children.Clear();
-            foreach (var game in currentGames)
+            foreach (var program in currentGames)
             {
-                GameCell gameCell = new GameCell(game, this);
-                Grid viewGameCell = gameCell.BuildCell();
-                DataSectionStack.Children.Add(viewGameCell);
+                ProgramCell programCell = new ProgramCell(program, this);
+                Grid viewProgramCell = programCell.BuildCell();
+                DataSectionStack.Children.Add(viewProgramCell);
             }
         }
 
@@ -246,27 +186,27 @@ namespace GameStore
 
             DataSectionStack.Children.Clear();
             currentGames.Clear();
-            currentGames = GameDataService.FindByName(findName);
+            currentGames = ProgramDataService.FindByName(findName);
 
             if (currentGames != null && currentGames.Count > 0)
             {
-                PrintCurrentGames();
+                PrintCurrentPrograms();
             }
 
             UndoRedoStack.Command command = new UndoRedoStack.Command(() => {
                 DataSectionStack.Children.Clear();
                 currentGames.Clear();
-                currentGames = GameDataService.FindByName(findName);
+                currentGames = ProgramDataService.FindByName(findName);
 
                 if (currentGames != null && currentGames.Count > 0)
                 {
-                    PrintCurrentGames();
+                    PrintCurrentPrograms();
                 }
             });
             undoRedo.AddAction(command);
             
         }
-        private void AddGame_Executed(object sender, ExecutedRoutedEventArgs e)
+        private void AddProgram_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             DataUpdate dataUpdate = new DataUpdate();
             dataUpdate.Owner = this;
@@ -293,48 +233,38 @@ namespace GameStore
         {
             langState.Languege = Languege.RU;
             LangButton.Text = "RU";
-            this.Resources = new ResourceDictionary() { Source = new Uri(@"/GameStore;component/Language/RULocal.xaml", UriKind.Relative)};
+            this.Resources = new ResourceDictionary() { Source = new Uri(@"/ProgramStore;component/Language/RULocal.xaml", UriKind.Relative)};
 
             TableTitleText.Text = (string)this.TryFindResource("TableTitle");
 
-            AllGames.Text = (string)this.TryFindResource("AllGameGenre");
-            Action.Text = (string)this.TryFindResource("ActionGameGenre");
-            Shooter.Text = (string)this.TryFindResource("ShooterGameGenre");
-            Arcade.Text = (string)this.TryFindResource("ArcadeGameGenre");
-            Fighting.Text = (string)this.TryFindResource("FightingGameGenre");
-            Race.Text = (string)this.TryFindResource("RaceGameGenre");
-            Simulator.Text = (string)this.TryFindResource("SimulatorGameGenre");
-            RPG.Text = (string)this.TryFindResource("RpgGameGenre");
-            Horror.Text = (string)this.TryFindResource("HorrorGameGenre");
+            AllPrograms.Text = (string)this.TryFindResource("AllProgramsCategory");
+            Utility.Text = (string)this.TryFindResource("UtilityProgramCategory");
+            Editor.Text = (string)this.TryFindResource("EditorProgramCategory");
+            Defender.Text = (string)this.TryFindResource("DefenderProgramCategory");
+            Web.Text = (string)this.TryFindResource("WEBProgramCategory");
 
             FilterPlaceTitle.Text = (string)this.TryFindResource("FilterTitle");
             ByName.Text = (string)this.TryFindResource("FilterByName");
             ByPrice.Text = (string)this.TryFindResource("FilterByPrice");
-            ByRating.Text = (string)this.TryFindResource("FilterByPopularity");
             GroupButtonText.Text = (string)this.TryFindResource("CommandToFilter");
         }
         private void SetEnLocal(State langState)
         {
             langState.Languege = Languege.EN;
             LangButton.Text = "EN";
-            this.Resources = new ResourceDictionary() { Source = new Uri(@"/GameStore;component/Language/ENLocal.xaml", UriKind.Relative) };
+            this.Resources = new ResourceDictionary() { Source = new Uri(@"/ProgramStore;component/Language/ENLocal.xaml", UriKind.Relative) };
 
             TableTitleText.Text = (string)this.TryFindResource("TableTitle");
 
-            AllGames.Text = (string)this.TryFindResource("AllGameGenre");
-            Action.Text = (string)this.TryFindResource("ActionGameGenre");
-            Shooter.Text = (string)this.TryFindResource("ShooterGameGenre");
-            Arcade.Text = (string)this.TryFindResource("ArcadeGameGenre");
-            Fighting.Text = (string)this.TryFindResource("FightingGameGenre");
-            Race.Text = (string)this.TryFindResource("RaceGameGenre");
-            Simulator.Text = (string)this.TryFindResource("SimulatorGameGenre");
-            RPG.Text = (string)this.TryFindResource("RpgGameGenre");
-            Horror.Text = (string)this.TryFindResource("HorrorGameGenre");
+            AllPrograms.Text = (string)this.TryFindResource("AllProgramsCategory");
+            Utility.Text = (string)this.TryFindResource("UtilityProgramCategory");
+            Editor.Text = (string)this.TryFindResource("EditorProgramCategory");
+            Defender.Text = (string)this.TryFindResource("DefenderProgramCategory");
+            Web.Text = (string)this.TryFindResource("WEBProgramCategory");
 
             FilterPlaceTitle.Text = (string)this.TryFindResource("FilterTitle");
             ByName.Text = (string)this.TryFindResource("FilterByName");
             ByPrice.Text = (string)this.TryFindResource("FilterByPrice");
-            ByRating.Text = (string)this.TryFindResource("FilterByPopularity");
             GroupButtonText.Text = (string)this.TryFindResource("CommandToFilter");
         }
 
@@ -342,7 +272,7 @@ namespace GameStore
         {
             themeState.Theme = ThemeType.BLUE;
             ThemeButtonText.Text = "BL";
-            this.Resources = new ResourceDictionary() { Source = new Uri(@"/GameStore;component/Recourses/BlueThems.xaml", UriKind.Relative) };
+            this.Resources = new ResourceDictionary() { Source = new Uri(@"/ProgramStore;component/Recourses/BlueThems.xaml", UriKind.Relative) };
 
             BaseFrame.Style = (Style)this.TryFindResource("BackColor");
             Title.Style = (Style)this.TryFindResource("TitleLineColor");
@@ -355,68 +285,26 @@ namespace GameStore
             MenuPlace.Style  = (Style)this.TryFindResource("MainViewsColor");
 
             AllButton.Style = (Style)this.TryFindResource("ButtonStyle");
-            ActionButton.Style = (Style)this.TryFindResource("ButtonStyle");
-            ArcadeButton.Style = (Style)this.TryFindResource("ButtonStyle"); 
-            FightButton.Style= (Style)this.TryFindResource("ButtonStyle"); 
-            ShooterButton.Style = (Style)this.TryFindResource("ButtonStyle"); 
-            RaceButton.Style = (Style)this.TryFindResource("ButtonStyle");
-            SimulatorButton.Style = (Style)this.TryFindResource("ButtonStyle");
-            RPGButton.Style = (Style)this.TryFindResource("ButtonStyle");
-            HorrorButton.Style = (Style)this.TryFindResource("ButtonStyle");
+            UtilityButton.Style = (Style)this.TryFindResource("ButtonStyle");
+            EditorButton.Style = (Style)this.TryFindResource("ButtonStyle");
+            EditorButton.Style= (Style)this.TryFindResource("ButtonStyle");
+            DefenderButton.Style = (Style)this.TryFindResource("ButtonStyle");
+            WebButton.Style = (Style)this.TryFindResource("ButtonStyle");
             LanguegeButton.Style = (Style)this.TryFindResource("TitleLineColor");
             LangButton.Style = (Style)this.TryFindResource("TitleLineColor");
             ThemeButton.Style = (Style)this.TryFindResource("TitleLineColor");
 
             GroupButton.Style  = (Style)this.TryFindResource("ButtonStyle");
             ByNameButton.Style = (Style)this.TryFindResource("ButtonStyle");
-            ByPoplarityButton.Style = (Style)this.TryFindResource("ButtonStyle");
             ByPriceButton.Style = (Style)this.TryFindResource("ButtonStyle");
             
             AddGameButton.Style = (Style)this.TryFindResource("AddButtonTemplate");
-        }
-        private void SetRedTheme(State themeState)
-        {
-            themeState.Theme = ThemeType.RED;
-            ThemeButtonText.Text = "RD";
-            this.Resources = new ResourceDictionary() { Source = new Uri(@"/GameStore;component/Recourses/RedThems.xaml", UriKind.Relative) };
-
-            BaseFrame.Style = (Style)this.TryFindResource("BackColor");
-            Title.Style = (Style)this.TryFindResource("TitleLineColor");
-            LogoPlace.Style = (Style)this.TryFindResource("TitleLineColor");
-            FindPlace.Style = (Style)this.TryFindResource("TitleLineColor");
-
-            FilterPlace.Style = (Style)this.TryFindResource("MainViewsColor");
-            TableTitle.Style = FindPlace.Style = (Style)this.TryFindResource("TitleLineColor"); ;
-            DataPlace.Style = (Style)this.TryFindResource("MainViewsColor");
-            MenuPlace.Style = (Style)this.TryFindResource("MainViewsColor");
-
-            AllButton.Style = (Style)this.TryFindResource("ButtonStyle");
-            ActionButton.Style = (Style)this.TryFindResource("ButtonStyle");
-            ArcadeButton.Style = (Style)this.TryFindResource("ButtonStyle");
-            FightButton.Style = (Style)this.TryFindResource("ButtonStyle");
-            ShooterButton.Style = (Style)this.TryFindResource("ButtonStyle");
-            RaceButton.Style = (Style)this.TryFindResource("ButtonStyle");
-            SimulatorButton.Style = (Style)this.TryFindResource("ButtonStyle");
-            RPGButton.Style = (Style)this.TryFindResource("ButtonStyle");
-            LangButton.Style = (Style)this.TryFindResource("TitleLineColor");
-            HorrorButton.Style = (Style)this.TryFindResource("ButtonStyle");
-
-            GroupButton.Style = (Style)this.TryFindResource("ButtonStyle");
-            ByNameButton.Style = (Style)this.TryFindResource("ButtonStyle");
-            ByPoplarityButton.Style = (Style)this.TryFindResource("ButtonStyle");
-            ByPriceButton.Style = (Style)this.TryFindResource("ButtonStyle");
-            LanguegeButton.Style = (Style)this.TryFindResource("ButtonStyle");
-            LanguegeButton.Style = (Style)this.TryFindResource("TitleLineColor");
-            ThemeButton.Style = (Style)this.TryFindResource("TitleLineColor");
-
-            AddGameButton.Style = (Style)this.TryFindResource("AddButtonTemplate");
-            
         }
         private void SetGrayTheme(State themeState)
         {
             themeState.Theme = ThemeType.GRAY;
             ThemeButtonText.Text = "GR";
-            this.Resources = new ResourceDictionary() { Source = new Uri(@"/GameStore;component/Recourses/GrayThems.xaml", UriKind.Relative) };
+            this.Resources = new ResourceDictionary() { Source = new Uri(@"/ProgramStore;component/Recourses/GrayThems.xaml", UriKind.Relative) };
 
             BaseFrame.Style = (Style)this.TryFindResource("BackColor");
             Title.Style = (Style)this.TryFindResource("TitleLineColor");
@@ -429,21 +317,17 @@ namespace GameStore
             MenuPlace.Style = (Style)this.TryFindResource("MainViewsColor");
 
             AllButton.Style = (Style)this.TryFindResource("ButtonStyle");
-            ActionButton.Style = (Style)this.TryFindResource("ButtonStyle");
-            ArcadeButton.Style = (Style)this.TryFindResource("ButtonStyle");
-            FightButton.Style = (Style)this.TryFindResource("ButtonStyle");
-            ShooterButton.Style = (Style)this.TryFindResource("ButtonStyle");
-            RaceButton.Style = (Style)this.TryFindResource("ButtonStyle");
-            SimulatorButton.Style = (Style)this.TryFindResource("ButtonStyle");
-            RPGButton.Style = (Style)this.TryFindResource("ButtonStyle");
-            HorrorButton.Style = (Style)this.TryFindResource("ButtonStyle");
+            UtilityButton.Style = (Style)this.TryFindResource("ButtonStyle");
+            EditorButton.Style = (Style)this.TryFindResource("ButtonStyle");
+            EditorButton.Style = (Style)this.TryFindResource("ButtonStyle");
+            DefenderButton.Style = (Style)this.TryFindResource("ButtonStyle");
+            WebButton.Style = (Style)this.TryFindResource("ButtonStyle");
             LanguegeButton.Style = (Style)this.TryFindResource("TitleLineColor");
             LangButton.Style = (Style)this.TryFindResource("TitleLineColor");
             ThemeButton.Style = (Style)this.TryFindResource("TitleLineColor");
 
             GroupButton.Style = (Style)this.TryFindResource("ButtonStyle");
             ByNameButton.Style = (Style)this.TryFindResource("ButtonStyle");
-            ByPoplarityButton.Style = (Style)this.TryFindResource("ButtonStyle");
             ByPriceButton.Style = (Style)this.TryFindResource("ButtonStyle");
 
             AddGameButton.Style = (Style)this.TryFindResource("AddButtonTemplate");
@@ -457,15 +341,12 @@ namespace GameStore
                     SetGrayTheme(themeState);
                     break;
                 case ThemeType.GRAY:
-                    SetRedTheme(themeState);
-                    break;
-                case ThemeType.RED:
                     SetBlueTheme(themeState);
                     break;
                 default:
                     break;
             }
-            DisplayGames();
+            DisplayPrograms();
         }
 
         private void Redo_Click(object sender, RoutedEventArgs e)

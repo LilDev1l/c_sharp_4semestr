@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace GameStore.Commands
+namespace ProgramStore.Commands
 {
-    class GameCommand
+    class ProgramCommand
     {
-        static GameCommand()
+        static ProgramCommand()
         {
             View = new RoutedCommand("View", typeof(MainWindow));
             Add = new RoutedCommand("Add", typeof(MainWindow));

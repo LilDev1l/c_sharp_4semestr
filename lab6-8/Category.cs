@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace ProgramStore
 {
-    enum Languege
+    public enum Category
     {
-        EN,
-        RU
+        UTILITY,
+        DEFENDER,
+        EDITOR,
+        WEB,
+        ALL
     }
 }

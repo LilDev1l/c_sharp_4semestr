@@ -6,9 +6,9 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{D654CE31-06CD-4BE2-A140-A42244051FA7}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>GameStore</RootNamespace>
-    <AssemblyName>GameStore</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <RootNamespace>ProgramStore</RootNamespace>
+    <AssemblyName>ProgramStore</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -16,6 +16,7 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -94,23 +95,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Commands\GameCommand.cs" />
+    <Compile Include="Commands\ProgramCommand.cs" />
     <Compile Include="Commands\HomeCommands.cs" />
     <Compile Include="DataUpdate.xaml.cs">
       <DependentUpon>DataUpdate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DataWork\GameDataService.cs" />
+    <Compile Include="DataWork\ProgramDataService.cs" />
     <Compile Include="DevelopButton.xaml.cs">
       <DependentUpon>DevelopButton.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GameCell.cs" />
-    <Compile Include="GameView.xaml.cs">
-      <DependentUpon>GameView.xaml</DependentUpon>
+    <Compile Include="ProgramCell.cs" />
+    <Compile Include="ProgramView.xaml.cs">
+      <DependentUpon>ProgramView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Genre.cs" />
+    <Compile Include="Category.cs" />
     <Compile Include="Languege.cs" />
     <Compile Include="State.cs" />
-    <Compile Include="SystemRequirements.cs" />
     <Compile Include="ThemeType.cs" />
     <Compile Include="UndoRedoStack.cs" />
     <Page Include="DataUpdate.xaml">
@@ -129,7 +129,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GameView.xaml">
+    <Page Include="ProgramView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -141,7 +141,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Game.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -151,10 +151,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Recourses\GrayThems.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Recourses\RedThems.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

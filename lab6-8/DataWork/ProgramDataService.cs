@@ -9,9 +9,9 @@ using System.Text.Json;
 using System.Text.Unicode;
 using System.Text.Encodings.Web;
 
-namespace GameStore.DataWork
+namespace ProgramStore.DataWork
 {
-    static class GameDataService
+    static class ProgramDataService
     {
 
         public static string FILE_PATH = @"..\..\Data\data.json";
@@ -22,13 +22,13 @@ namespace GameStore.DataWork
             WriteIndented = true
         };
 
-        public static void AddGame(Game newGame)
+        public static void AddProgram(Program newGame)
         {
             try
             {
                 using (StreamWriter jsonFile = new StreamWriter(GetPath(), true))
                 {
-                    string jsonDataAboutGame = JsonSerializer.Serialize<Game>(newGame, JSON_OPTIONS);
+                    string jsonDataAboutGame = JsonSerializer.Serialize<Program>(newGame, JSON_OPTIONS);
                     jsonFile.WriteLine(jsonDataAboutGame);
                 }
             }
@@ -51,9 +51,9 @@ namespace GameStore.DataWork
                 MessageBox.Show(e.Message + e.StackTrace);
             }
         }
-        public static List<Game> FindAll()
+        public static List<Program> FindAll()
         {
-            List<Game> games = new List<Game>();
+            List<Program> programs = new List<Program>();
             try
             {
                 using (StreamReader jsonFile = new StreamReader(GetPath()))
@@ -68,9 +68,9 @@ namespace GameStore.DataWork
                         if (semicolonCount == 2)
                         {
                             semicolonCount = 0;
-                            Game game = JsonSerializer.Deserialize<Game>(bufForJsonString, JSON_OPTIONS);
+                            Program program = JsonSerializer.Deserialize<Program>(bufForJsonString, JSON_OPTIONS);
                             bufForJsonString = "";
-                            games.Add(game);
+                            programs.Add(program);
                         }
                     }
                 }
@@ -79,27 +79,27 @@ namespace GameStore.DataWork
             {
                 MessageBox.Show(e.Message + e.StackTrace);
             }
-            return games;
+            return programs;
         }
-        public static List<Game> FindByName(string findName)
+        public static List<Program> FindByName(string findName)
         {
             try
             {
-                List<Game> resultGames = new List<Game>();
-                List<Game> games = FindAll();
+                List<Program> resultPrograms = new List<Program>();
+                List<Program> programs = FindAll();
 
-                if (games.Count > 0)
+                if (programs.Count > 0)
                 {
-                    foreach (var c in games)
+                    foreach (var c in programs)
                     {
-                        if (c.FullName.Contains(findName))
+                        if (c.Name.Contains(findName))
                         {
-                            resultGames.Add(c);
+                            resultPrograms.Add(c);
                         }
                     }
                 }
 
-                return resultGames;
+                return resultPrograms;
             }
             catch (IOException e)
             {
@@ -107,17 +107,17 @@ namespace GameStore.DataWork
             }
             return null;
         }
-        public static bool RemoveGame(Game game)
+        public static bool RemoveProgram(Program program)
         {
             try
             {
-                List<Game> games = FindAll();
-                if (games.Remove(game))
+                List<Program> programs = FindAll();
+                if (programs.Remove(program))
                 {
                     ClearFile();
-                    foreach (var c in games) 
+                    foreach (var c in programs) 
                     {
-                        AddGame(c);
+                        AddProgram(c);
                     }
                     return true;
                 }
@@ -132,13 +132,13 @@ namespace GameStore.DataWork
             }
             return false;
         }
-        public static bool  UpdateDataAboutGame(Game baseData, Game newData)
+        public static bool  UpdateDataAboutProgram(Program baseData, Program newData)
         {
             try
             {
-                if (RemoveGame(baseData))
+                if (RemoveProgram(baseData))
                 {
-                    AddGame(newData);
+                    AddProgram(newData);
                     return true;
                 }
                 else 

@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GameStore
+namespace ProgramStore
 {
     /// <summary>
     /// Логика взаимодействия для DevelopButton.xaml

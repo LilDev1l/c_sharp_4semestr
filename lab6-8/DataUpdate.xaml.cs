@@ -1,4 +1,4 @@
-﻿using GameStore.DataWork;
+﻿using ProgramStore.DataWork;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -14,7 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace GameStore
+namespace ProgramStore
 {
     /// <summary>
     /// Логика взаимодействия для DataUpdate.xaml
@@ -47,20 +47,13 @@ namespace GameStore
         }
         private void SetRuLocal(State langState)
         {
-            this.Resources = new ResourceDictionary() { Source = new Uri(@"/GameStore;component/Language/RULocal.xaml", UriKind.Relative) };
+            this.Resources = new ResourceDictionary() { Source = new Uri(@"/ProgramStore;component/Language/RULocal.xaml", UriKind.Relative) };
 
             NameLabel.Text = (string)this.TryFindResource("DataUpdateName");
-            SmallNameLabel.Text = (string)this.TryFindResource("DataUpdateSmallName");
-            DeveloperLabel.Text = (string)this.TryFindResource("DataUpdateDeveloper");
-            GenreLabel.Text = (string)this.TryFindResource("DataUpdateGenre");
+            CategoryLabel.Text = (string)this.TryFindResource("DataUpdateCategory");
             ImageLabel.Text = (string)this.TryFindResource("DataUpdateImage");
-            RatingLabel.Text = (string)this.TryFindResource("DataUpdateRating");
             PriceLabel.Text = (string)this.TryFindResource("DataUpdatePrice");
             DescriptionLabel.Text = (string)this.TryFindResource("DataUpdateDescription");
-            OSLabel.Text = (string)this.TryFindResource("DataUpdateOS");
-            ProcessorLabel.Text = (string)this.TryFindResource("DataUpdateProcessor");
-            RAMLabel.Text = (string)this.TryFindResource("DataUpdateRAM");
-            FreeMemoryLabel.Text = (string)this.TryFindResource("DataUpdateFreeMemory");
             ExitButton.Content = (string)this.TryFindResource("DataUpdateExitButton");
             EnterButton.Content = (string)this.TryFindResource("DataUpdateEnterButton");
             ImageButton.Content = (string)this.TryFindResource("DataUpdateImageButton");
@@ -68,20 +61,13 @@ namespace GameStore
         }
         private void SetEnLocal(State langState)
         {
-            this.Resources = new ResourceDictionary() { Source = new Uri(@"/GameStore;component/Language/ENLocal.xaml", UriKind.Relative) };
+            this.Resources = new ResourceDictionary() { Source = new Uri(@"/ProgramStore;component/Language/ENLocal.xaml", UriKind.Relative) };
 
             NameLabel.Text = (string)this.TryFindResource("DataUpdateName");
-            SmallNameLabel.Text = (string)this.TryFindResource("DataUpdateSmallName");
-            DeveloperLabel.Text = (string)this.TryFindResource("DataUpdateDeveloper");
-            GenreLabel.Text = (string)this.TryFindResource("DataUpdateGenre");
+            CategoryLabel.Text = (string)this.TryFindResource("DataUpdateCategory");
             ImageLabel.Text = (string)this.TryFindResource("DataUpdateImage");
-            RatingLabel.Text = (string)this.TryFindResource("DataUpdateRating");
             PriceLabel.Text = (string)this.TryFindResource("DataUpdatePrice");
             DescriptionLabel.Text = (string)this.TryFindResource("DataUpdateDescription");
-            OSLabel.Text = (string)this.TryFindResource("DataUpdateOS");
-            ProcessorLabel.Text = (string)this.TryFindResource("DataUpdateProcessor");
-            RAMLabel.Text = (string)this.TryFindResource("DataUpdateRAM");
-            FreeMemoryLabel.Text = (string)this.TryFindResource("DataUpdateFreeMemory");
             ExitButton.Content = (string)this.TryFindResource("DataUpdateExitButton");
             EnterButton.Content = (string)this.TryFindResource("DataUpdateEnterButton");
             ImageButton.Content = (string)this.TryFindResource("DataUpdateImageButton");
@@ -95,7 +81,7 @@ namespace GameStore
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Image files (*.png;*.jpg)|*.png;*.jpg|All files (*.*)|*.*";
-            openFileDialog.InitialDirectory = @"D:\GIT";
+            openFileDialog.InitialDirectory = new Uri("/ProgramStory;component/Images", UriKind.Relative).AbsoluteUri;
 
             if (openFileDialog.ShowDialog() == true)
             {
@@ -110,7 +96,7 @@ namespace GameStore
         {
             if (IsValid())
             {
-                GameDataService.AddGame(CreateGame());
+                ProgramDataService.AddProgram(CreateProgram());
                 this.Close();
             }
             else
@@ -118,44 +104,30 @@ namespace GameStore
                 MessageBox.Show("Please write all fields ...");
             }
         }
-        private Game CreateGame()
+        private Program CreateProgram()
         {
-            Game game = new Game();
-            game.FullName = Name.Text;
-            game.SmallName = SmallName.Text;
-            game.Image = Path;
-            game.Genre = StringToGenre(Genre.Text);
-            game.Developer = Developer.Text;
-            game.Price = Convert.ToInt32(Price.Text);
-            game.Rating = Convert.ToInt32(Rating.Text);
-            game.Description = Description.Text;
-            game.SystemRequirements = new SystemRequirements();
-            game.SystemRequirements.OS = OS.Text;
-            game.SystemRequirements.Processor = Processor.Text;
-            game.SystemRequirements.RAM = Convert.ToInt32(RAM.Text);
-            game.SystemRequirements.FreeMemory = Convert.ToInt32(FreeMemory.Text);
-            return game;
+            Program program = new Program();
+            program.Name = Name.Text;
+            program.Image = Path;
+            program.Category = StringToCategory(Category.Text);
+            program.Price = Convert.ToInt32(Price.Text);
+            program.Description = Description.Text;
+            return program;
         }
         private bool IsValid()
         {
-            return Name.Text.Length > 0 && SmallName.Text.Length > 0 && Developer.Text.Length > 0 &&
-                Genre.SelectedItem != null && Path.Length > 0 && OS.Text.Length > 0 && Processor.Text.Length > 0 &&
-                RAM.Text.Length > 0 && FreeMemory.Text.Length > 0 && Rating.Text.Length > 0 && Price.Text.Length > 0;
+            return Name.Text.Length > 0  && Category.SelectedItem != null && Path.Length > 0 && Price.Text.Length > 0;
         }
-        private Genre StringToGenre(string genre)
+        private Category StringToCategory(string category)
         {
-            switch (genre)
+            switch (category)
             {
-                case "action": return GameStore.Genre.ACTION;
-                case "race": return GameStore.Genre.RACE;
-                case "rpg": return GameStore.Genre.RPG;
-                case "shooter": return GameStore.Genre.SHOOTER;
-                case "simulator": return GameStore.Genre.SIMULATOR;
-                case "horror": return GameStore.Genre.HORROR;
-                case "arcade": return GameStore.Genre.ARCADE;
-                case "fighting": return GameStore.Genre.FIGHTING;
+                case "utility": return ProgramStore.Category.UTILITY;
+                case "defender": return ProgramStore.Category.DEFENDER;
+                case "editor": return ProgramStore.Category.EDITOR;
+                case "web": return ProgramStore.Category.WEB;
                 default:
-                    return GameStore.Genre.ALL;
+                    return ProgramStore.Category.ALL;
             }
         }
     }

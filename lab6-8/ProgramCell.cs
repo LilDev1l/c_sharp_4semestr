@@ -1,4 +1,4 @@
-﻿using GameStore.DataWork;
+﻿using ProgramStore.DataWork;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,21 +11,21 @@ using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace GameStore
+namespace ProgramStore
 {
-    class GameCell
+    class ProgramCell
     {
-        private Game game;
+        private Program program;
         private readonly MainWindow mainWindow;
 
-        public Game getGame()
+        public Program getProgram()
         {
-            return game;
+            return program;
         }
 
-        public GameCell(Game game, MainWindow mainWindow)
+        public ProgramCell(Program program, MainWindow mainWindow)
         {
-            this.game = game;
+            this.program = program;
             this.mainWindow = mainWindow;
         }
 
@@ -105,7 +105,7 @@ namespace GameStore
             image.Margin = new Thickness(5);
             BitmapImage bi3 = new BitmapImage();
             bi3.BeginInit();
-            bi3.UriSource = new Uri(game.Image, UriKind.Relative) ;
+            bi3.UriSource = new Uri(program.Image, UriKind.Relative) ;
             bi3.EndInit();
             image.Source = bi3;
             Grid.SetColumn(image, 0);
@@ -116,7 +116,7 @@ namespace GameStore
         private TextBlock CreateTextBlock()
         {
             TextBlock textBlock = new TextBlock();
-            textBlock.Text = game.FullName;
+            textBlock.Text = program.Name;
             textBlock.TextWrapping = TextWrapping.Wrap;
             textBlock.Margin = new Thickness(5, 2, 5, 2);
             Grid.SetColumn(textBlock, 1);
@@ -133,16 +133,16 @@ namespace GameStore
             button.VerticalAlignment = VerticalAlignment.Center;
             button.HorizontalAlignment = HorizontalAlignment.Right;
             button.Margin = new Thickness(3);
-            button.Command = Commands.GameCommand.View;
+            button.Command = Commands.ProgramCommand.View;
             CommandBinding commandBinding = new CommandBinding();
-            commandBinding.Command = Commands.GameCommand.View;
-            commandBinding.Executed += ViewGame_Executed;
+            commandBinding.Command = Commands.ProgramCommand.View;
+            commandBinding.Executed += ViewProgram_Executed;
             button.CommandBindings.Add(commandBinding);
 
             Image image = new Image();
             BitmapImage bi3 = new BitmapImage();
             bi3.BeginInit();
-            bi3.UriSource = new Uri(@"/GameStore;component/images/eye.png", UriKind.Relative);
+            bi3.UriSource = new Uri(@"/ProgramStore;component/images/eye.png", UriKind.Relative);
             bi3.EndInit();
             image.Source = bi3;
 
@@ -160,16 +160,16 @@ namespace GameStore
             button.VerticalAlignment = VerticalAlignment.Center;
             button.HorizontalAlignment = HorizontalAlignment.Right;
             button.Margin = new Thickness(3);
-            button.Command = Commands.GameCommand.Delete;
+            button.Command = Commands.ProgramCommand.Delete;
             CommandBinding commandBinding = new CommandBinding();
-            commandBinding.Command = Commands.GameCommand.Delete;
-            commandBinding.Executed += DeleteGame_Executed;
+            commandBinding.Command = Commands.ProgramCommand.Delete;
+            commandBinding.Executed += DeleteProgram_Executed;
             button.CommandBindings.Add(commandBinding);
 
             Image image = new Image();
             BitmapImage bi3 = new BitmapImage();
             bi3.BeginInit();
-            bi3.UriSource = new Uri(@"/GameStore;component/images/delete.png", UriKind.Relative);
+            bi3.UriSource = new Uri(@"/ProgramStore;component/images/delete.png", UriKind.Relative);
             bi3.EndInit();
             image.Source = bi3;
 
@@ -187,16 +187,16 @@ namespace GameStore
             button.VerticalAlignment = VerticalAlignment.Center;
             button.HorizontalAlignment = HorizontalAlignment.Right;
             button.Margin = new Thickness(3);
-            button.Command = Commands.GameCommand.Update;
+            button.Command = Commands.ProgramCommand.Update;
             CommandBinding commandBinding = new CommandBinding();
-            commandBinding.Command = Commands.GameCommand.Update;
-            commandBinding.Executed += UpdateGame_Executed;
+            commandBinding.Command = Commands.ProgramCommand.Update;
+            commandBinding.Executed += UpdateProgram_Executed;
             button.CommandBindings.Add(commandBinding);
 
             Image image = new Image();
             BitmapImage bi3 = new BitmapImage();
             bi3.BeginInit();
-            bi3.UriSource = new Uri(@"/GameStore;component/images/update.png", UriKind.Relative);
+            bi3.UriSource = new Uri(@"/ProgramStore;component/images/update.png", UriKind.Relative);
             bi3.EndInit();
             image.Source = bi3;
 
@@ -229,80 +229,63 @@ namespace GameStore
             }
         }
 
-        public void ViewGame_Executed(object sender, ExecutedRoutedEventArgs e)
+        public void ViewProgram_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            GameView gameView = new GameView();
-            GameViewFieldInicalization(gameView);
-            gameView.Show();
+            ProgramView programView = new ProgramView();
+            ProgramViewFieldInicalization(programView);
+            programView.Show();
         }
 
-        private void GameViewFieldInicalization(GameView gameView)
+        private void ProgramViewFieldInicalization(ProgramView programView)
         {
-            gameView.Owner = mainWindow;
-            gameView.DescriptionText.Text = "Description:\n" + game.Description;
-            gameView.GameName.Text = game.FullName;
-            gameView.Price.Text = game.Price.ToString();
-            gameView.Name.Text += game.SmallName;
-            gameView.Developer.Text += game.Developer;
-            gameView.Genre.Text += GenreToString(game.Genre);
-            gameView.OS.Text += game.SystemRequirements.OS;
-            gameView.Processor.Text += game.SystemRequirements.Processor;
-            gameView.RAM.Text += game.SystemRequirements.RAM + "GB";
-            gameView.FreeMemory.Text += game.SystemRequirements.FreeMemory + "GB";
-            gameView.Rating.Text += game.Rating;
+            programView.Owner = mainWindow;
+            programView.DescriptionText.Text = "Description:\n" + program.Description;
+            //programView.ProgramName.Text = program.Name;
+            programView.Price.Text = program.Price.ToString();
+            //programView.Category.Text += CategoryToString(program.Category);
             BitmapImage bi3 = new BitmapImage();
             bi3.BeginInit();
-            bi3.UriSource = new Uri(game.Image, UriKind.Relative);
+            bi3.UriSource = new Uri(program.Image, UriKind.Relative);
             bi3.EndInit();
-            gameView.GameImage.Source = bi3;
+            programView.ProgramImage.Source = bi3;
         }
 
-        private string GenreToString(Genre genre)
+        private string CategoryToString(Category category)
         {
-            switch (genre)
+            switch (category)
             {
-                case Genre.ACTION: return "action";
-                case Genre.ARCADE: return "arcade";
-                case Genre.FIGHTING: return "fighting";
-                case Genre.HORROR: return "horror";
-                case Genre.RPG: return "rpg";
-                case Genre.RACE: return "race";
-                case Genre.SIMULATOR: return "simulator";
+                case Category.UTILITY: return "utility";
+                case Category.DEFENDER: return "defender";
+                case Category.EDITOR: return "editor";
+                case Category.WEB: return "web";
                 default:
                     return "";
             }
         }
 
-        public void DeleteGame_Executed(object sender, ExecutedRoutedEventArgs e)
+        public void DeleteProgram_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            GameDataService.RemoveGame(game);
-            mainWindow.DisplayGames();
+            ProgramDataService.RemoveProgram(program);
+            mainWindow.DisplayPrograms();
         }
         
-        public void UpdateGame_Executed(object sender, ExecutedRoutedEventArgs e)
+        public void UpdateProgram_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             DataUpdate dataUpdate = new DataUpdate();
             DataUpdateFieldInit(dataUpdate);
-            GameDataService.RemoveGame(game);
+            ProgramDataService.RemoveProgram(program);
             dataUpdate.Show();
-            mainWindow.DisplayGames();
+            mainWindow.DisplayPrograms();
         }
 
         private void DataUpdateFieldInit(DataUpdate dataUpdate)
         {
             dataUpdate.Owner = mainWindow;
-            dataUpdate.Description.Text = game.Description;
-            dataUpdate.Name.Text = game.FullName;
-            dataUpdate.Price.Text = game.Price.ToString();
-            dataUpdate.SmallName.Text = game.SmallName;
-            dataUpdate.Developer.Text = game.Developer;
-            dataUpdate.Genre.Text = GenreToString(game.Genre);
-            dataUpdate.OS.Text = game.SystemRequirements.OS;
-            dataUpdate.Processor.Text = game.SystemRequirements.Processor;
-            dataUpdate.RAM.Text = game.SystemRequirements.RAM.ToString();
-            dataUpdate.FreeMemory.Text = game.SystemRequirements.FreeMemory.ToString();
-            dataUpdate.Rating.Text = game.Rating.ToString();
-            dataUpdate.Path = game.Image;
+            dataUpdate.Description.Text = program.Description;
+            dataUpdate.Name.Text = program.Name;
+            dataUpdate.Price.Text = program.Price.ToString();
+            dataUpdate.Category.Text = CategoryToString(program.Category);
+            dataUpdate.Path = program.Image;
         }
     }
 }
