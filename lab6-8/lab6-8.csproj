@@ -98,9 +98,6 @@
       <DependentUpon>DataUpdate.xaml</DependentUpon>
     </Compile>
     <Compile Include="DataWork\ProgramDataService.cs" />
-    <Compile Include="DevelopButton.xaml.cs">
-      <DependentUpon>DevelopButton.xaml</DependentUpon>
-    </Compile>
     <Compile Include="DataWork\ProgramCell.cs" />
     <Compile Include="Views\ProgramView.xaml.cs">
       <DependentUpon>ProgramView.xaml</DependentUpon>
@@ -111,10 +108,6 @@
     <Compile Include="Models\ThemeType.cs" />
     <Compile Include="Commands\UndoRedoStack.cs" />
     <Page Include="Views\DataUpdate.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="DevelopButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -210,7 +203,12 @@
     <Content Include="Scripts\jquery-2.1.1.min.js" />
     <Content Include="Scripts\nugetexample.js" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Lab8ControlLibrary\Lab8ControlLibrary.csproj">
+      <Project>{d4d38063-a93e-4c23-8d24-ed2c9a5e5264}</Project>
+      <Name>Lab8ControlLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

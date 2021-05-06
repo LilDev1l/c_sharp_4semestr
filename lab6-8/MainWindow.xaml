@@ -7,6 +7,7 @@
         xmlns:local="clr-namespace:ProgramStore"
         xmlns:fa="http://schemas.fontawesome.com/icons/"
         xmlns:localcommand ="clr-namespace:ProgramStore.Commands"
+        xmlns:myButton="clr-namespace:Lab8ControlLibrary;assembly=Lab8ControlLibrary"
         mc:Ignorable="d"
         Title="Home" Height="450" Width="800" MinHeight="500" MinWidth="820">
     <Window.CommandBindings>
@@ -35,7 +36,7 @@
             </Style.Triggers>
         </Style>
     </Window.Resources>
-    <Grid x:Name="BaseFrame" ShowGridLines="False" MinHeight="450" MinWidth="800"
+    <Grid x:Name="BaseFrame" ShowGridLines="True" MinHeight="450" MinWidth="800"
           Style="{StaticResource BackColor}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -335,7 +336,8 @@
 
         <Grid x:Name="LeftPanel" Grid.Row="1" Grid.Column="2">
             <Grid.RowDefinitions>
-                <RowDefinition></RowDefinition>
+                <RowDefinition MinHeight="180"></RowDefinition>
+                <RowDefinition MinHeight="150"></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
 
@@ -399,6 +401,7 @@
                     </Grid>
                 </Button>
             </Grid>
+            <myButton:MyButton Grid.Row="1" Margin="30"/>
         </Grid>
 
     </Grid>

@@ -13,21 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ProgramStore
+namespace Lab8ControlLibrary
 {
     /// <summary>
-    /// Логика взаимодействия для DevelopButton.xaml
+    /// Логика взаимодействия для UserControl1.xaml
     /// </summary>
-    public partial class DevelopButton : UserControl
+    public partial class MyButton : UserControl
     {
-        public DevelopButton()
+        public MyButton()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Developer: Sergei Valko, Version:1.1.1");
         }
     }
 }
