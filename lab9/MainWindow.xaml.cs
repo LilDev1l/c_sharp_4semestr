@@ -24,5 +24,10 @@ namespace lab9
         {
             InitializeComponent();
         }
+
+        public void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            MessageBox.Show("Requery");
+        }
     }
 }

@@ -7,8 +7,29 @@
         xmlns:controls="clr-namespace:lab9.UserControls"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <UniformGrid Rows="2">
-        <controls:ColorPicker Margin="100 15 100 15"/>
-        <controls:Events Margin="100 15 100 15"/>
-    </UniformGrid>
+    
+    <Window.CommandBindings>
+        <CommandBinding Command="local:MyCommand.Requery"
+                        Executed="CommandBinding_Executed"></CommandBinding>
+    </Window.CommandBindings>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <controls:ColorPicker Grid.Row="0" Grid.ColumnSpan="2"
+                              Margin="100 15 100 15"/>
+        <controls:Events Grid.Row="1" Grid.Column="0"
+                         HorizontalAlignment="Left"/>
+        <Button Grid.Row="1" Grid.Column="1"
+                Width="100" Height="50"
+                Content="Requery"
+                Command="local:MyCommand.Requery"/>
+    </Grid>
 </Window>
