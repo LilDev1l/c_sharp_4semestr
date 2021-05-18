@@ -1,0 +1,117 @@
+﻿<Window x:Class="lab10.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
+        xmlns:vm="clr-namespace:lab10.ViewModels"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:local="clr-namespace:lab10"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="460" Width="800"
+                MinHeight="460" MinWidth="800">
+    <Window.DataContext>
+        <vm:MainWindowViewModel></vm:MainWindowViewModel>
+    </Window.DataContext>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    
+    
+    <DockPanel>
+        <Grid DockPanel.Dock="Bottom" Height="50">
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                <fa:ImageAwesome Icon="ArrowCircleOutlineLeft" 
+                                 Height="40"
+                                 MouseDown="Prev_OnClick">
+                </fa:ImageAwesome>
+                <Button Margin="10"
+                        Command="{Binding RemoveProductCommand}">Remove</Button>
+                <fa:ImageAwesome Icon="ArrowCircleOutlineRight" 
+                                 Height="40"
+                                 MouseDown="Next_OnClick">
+                </fa:ImageAwesome>
+            </StackPanel>
+            
+        </Grid>
+        
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="250"/>
+            </Grid.ColumnDefinitions>
+
+            <DataGrid Grid.Column="0"
+                      x:Name="DataTable"
+                      ItemsSource="{Binding Products}"
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True"
+                      SelectedItem="{Binding SelectedProduct}">
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Path=Id}"
+                                        Header="Id"
+                                        Width="*"/>
+                    <DataGridTextColumn Binding="{Binding Path=Name}"
+                                        Header="Name"
+                                        Width="*"/>
+                    <DataGridTextColumn Binding="{Binding Path=Qty}"
+                                        Header="Qty"
+                                        Width="*"/>
+                    <DataGridTextColumn Binding="{Binding Path=Weight}"
+                                        Header="Weight"
+                                        Width="*"/>
+                    
+                    <DataGridTemplateColumn Width="100"
+                                            Header="Photo">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding Photo}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <Grid Grid.Column="1">
+                <DockPanel>
+                    <Button DockPanel.Dock="Bottom"
+                            Margin="80"
+                            Command="{Binding AddProductCommand}">Add</Button>
+                    <StackPanel Margin="10">
+                        <DockPanel Margin="10">
+                            <TextBox DockPanel.Dock="Right"
+                                     Width="100"
+                                     Text="{Binding Name}"/>
+                            <TextBlock Text="Name"/>
+                        </DockPanel>
+                        <DockPanel Margin="10">
+                            <TextBox DockPanel.Dock="Right"
+                                     Width="100"
+                                     Text="{Binding Qty}"/>
+                            <TextBlock Text="Qty"/>
+                        </DockPanel>
+                        <DockPanel Margin="10">
+                            <TextBox DockPanel.Dock="Right"
+                                     Width="100"
+                                     Text="{Binding Weight}"/>
+                            <TextBlock Text="Weight"/>
+                        </DockPanel>
+                        <DockPanel Margin="10 10 20 10">
+                            <Button DockPanel.Dock="Right"
+                                    Width="80"
+                                    
+                                    Content="Choose"
+                                    Command="{Binding ChoosePhotoCommand}"/>
+                            <TextBlock Text="Photo"/>
+                        </DockPanel>
+                    </StackPanel>
+                </DockPanel>
+            </Grid>
+        </Grid>
+    </DockPanel>
+</Window>
