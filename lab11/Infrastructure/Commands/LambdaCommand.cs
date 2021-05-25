@@ -1,7 +1,7 @@
-﻿using lab10.Infrastructure.Commands.Base;
+﻿using lab11.Infrastructure.Commands.Base;
 using System;
 
-namespace lab10.Infrastructure.Commands
+namespace lab11.Infrastructure.Commands
 {
     class LambdaCommand : Command
     {

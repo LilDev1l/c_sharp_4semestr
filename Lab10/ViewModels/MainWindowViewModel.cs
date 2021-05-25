@@ -7,8 +7,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using lab10.ViewModels.Base;
-using lab10.Models;
-using LuckyCurrency.Infrastructure.Commands;
+using lab10.Model;
+using lab10.Infrastructure.Commands;
 using System.Data.SqlClient;
 using lab10.db.model;
 using System.Configuration;
@@ -24,7 +24,7 @@ namespace lab10.ViewModels
     {
         private string _pathIcon = null;
 
-        #region Models
+        #region Model
 
         #region Products
         private ObservableCollection<ProductInfo> _products;
